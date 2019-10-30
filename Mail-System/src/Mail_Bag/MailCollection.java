@@ -1,4 +1,4 @@
-package mail_bag;
+package Mail_bag;
 
 public class MailCollection {
 	private String[] stack;
