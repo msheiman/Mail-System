@@ -1,4 +1,4 @@
-package Mail_bag;
+package Mail_Bag;
 
 public class Mail {
 	private double weight;

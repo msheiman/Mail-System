@@ -1,11 +1,11 @@
 package Customer_List;
 
-import Mail_bag.MailCollection;
+import Mail_Bag.MailCollection;
 
 public class Customer {
 	private String name;
 	private String address;
-	private Mail_bag.MailCollection mailbox;
+	private Mail_Bag.MailCollection mailbox;
 
 	public Customer(String name, String address, MailCollection mailbox) {
 		super();
