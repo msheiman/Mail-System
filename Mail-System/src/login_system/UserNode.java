@@ -1,22 +1,31 @@
 package login_system;
 
+//node for the user linked list
+//will rename to employee node later
 public class UserNode {
-	private String userName;
-	private String password;
-	
-	public String getUserName() {
-		return userName;
+	private Employee user;
+	private UserNode link;
+
+	public UserNode(Employee user, UserNode link) {
+		this.user = user;
+		this.link = link;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public Employee getUser() {
+		return user;
 	}
-	public String getPassword() {
-		return password;
+
+	public void setUser(Employee user) {
+		this.user = user;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public UserNode getLink() {
+		return link;
 	}
-	
-	
-	
+
+	public UserNode setLink(UserNode link) {
+		this.link = link;
+		return link;
+	}
+
 }
