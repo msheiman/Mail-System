@@ -46,6 +46,25 @@ public class CustomerCollection {
 		count++;	
 	}
 	
+	public int size(){
+		return count;
+	}
+	
+	public static boolean equals(String entry) {
+		Object obj = entry;
+		if (obj == null)
+			return false;
+		
+		if (!(obj instanceof Customer))
+			return false;
+		
+		Customer aCustomer = (Customer) obj;
+		
+		boolean isEqual = (());
+		
+		return isEqual;
+	}
+	
 	@Override
 	public String toString() {
 		String list = "{\n";
