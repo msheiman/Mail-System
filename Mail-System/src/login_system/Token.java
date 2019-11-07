@@ -25,5 +25,4 @@ public class Token {
 	public void setPword(String pword) {
 		this.pword = pword;
 	}
-
 }
