@@ -1,14 +1,16 @@
 package Mail_Bag;
 
+import java.util.Random;
+
 public class Mail {
 	private double weight;
-	private int trackingNumber;
+	private String trackingNumber;
 	private boolean signature;
 	
-	public Mail(double weight, int trackingNumber, boolean signature) {
+	public Mail(double weight, boolean signature) {
 		super();
 		this.weight = weight;
-		this.trackingNumber = trackingNumber;
+		this.trackingNumber = generateTrackingNumber();
 		this.signature = signature;
 	}
 	public double getWeight() {
@@ -17,10 +19,10 @@ public class Mail {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public int getTrackingNumber() {
+	public String getTrackingNumber() {
 		return trackingNumber;
 	}
-	public void setTrackingNumber(int trackingNumber) {
+	public void setTrackingNumber(String  trackingNumber) {
 		this.trackingNumber = trackingNumber;
 	}
 	public boolean isSignature() {
@@ -28,6 +30,26 @@ public class Mail {
 	}
 	public void setSignature(boolean signature) {
 		this.signature = signature;
+	}
+	
+	/**
+	 * Method name: generateTrackingNumber
+	 * Heading: public String generateTrackingNumber()
+	 * Description:
+	 * Parameters:
+	 * Precondition:
+	 * Postcondition:
+	 * Throws list:
+	 */
+	public String generateTrackingNumber() {
+		String tracking = "";
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    Random rnd = new Random();
+	    char char1 = alphabet.charAt(rnd.nextInt(alphabet.length()));
+	    char char2 = alphabet.charAt(rnd.nextInt(alphabet.length()));
+		int number = (int) ((Math.random() * ((99999999 - 10000000) + 1)) + 10000000);
+		tracking = char1 + char2 + String.valueOf(number);
+		return tracking;
 	}
 	@Override
 	public String toString() {
