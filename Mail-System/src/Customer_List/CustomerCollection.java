@@ -55,12 +55,6 @@ public class CustomerCollection {
 			list += cursor.getData() + "\n";
 			cursor = cursor.getLink();
 		}
-		
-		list +="\n}";
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'Experimental' of https://github.com/msheiman/Mail-System.git
 		return list;
 	}
 }
