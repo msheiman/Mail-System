@@ -81,8 +81,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", houseNum=" + houseNum + ", street=" + street + ", city=" + city
-				+ ", state=" + state + ", zipcode=" + zipcode + ", mailbox=" + mailbox + "]";
+		return name + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
 	}
 
 	class SortByZipcode implements Comparator <Customer>{
