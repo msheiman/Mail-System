@@ -57,6 +57,10 @@ public class CustomerCollection {
 		}
 		
 		list +="\n}";
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'Experimental' of https://github.com/msheiman/Mail-System.git
 		return list;
 	}
 }
