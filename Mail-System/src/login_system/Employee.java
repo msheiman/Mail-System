@@ -8,13 +8,13 @@ public class Employee {
 	private String password;
 	private String email;
 
-	Employee(String u, String p, String e) {
+	public Employee(String u, String p, String e) {
 		this.user = u;
 		this.password = p;
 		this.email = e;
 	}
 
-	Employee() {
+	public Employee() {
 		this.user = null;
 		this.password = null;
 		this.email = null;
