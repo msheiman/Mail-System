@@ -57,7 +57,6 @@ public class CustomerCollection {
 		}
 		
 		list +="\n}";
-		
 		return list;
 	}
 }
