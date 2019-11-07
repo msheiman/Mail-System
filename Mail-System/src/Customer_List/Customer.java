@@ -1,19 +1,22 @@
 package Customer_List;
 
+import java.util.Comparator;
+
 import Mail_Bag.MailCollection;
 
 public class Customer {
 	private String name;
-	private String address;
+	private int houseNum;
+	private String street;
 	private String city;
 	private String state;
 	private int zipcode;
 	private Mail_Bag.MailCollection mailbox;
 
-	public Customer(String name, String address, String city, String state, int zipcode, MailCollection mailbox) {
+	public Customer(String name, int houseNum, String street, String city, String state, int zipcode, MailCollection mailbox) {
 		super();
 		this.name = name;
-		this.address = address;
+		this.houseNum = houseNum;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
@@ -28,12 +31,20 @@ public class Customer {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
+	public int getHouseNum() {
+		return houseNum;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setHouseNum(int houseNum) {
+		this.houseNum = houseNum;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public String getCity() {
@@ -70,7 +81,22 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", address=" + address + "number of letters: " + mailbox.length() + "]";
+		return "Customer [name=" + name + ", houseNum=" + houseNum + ", street=" + street + ", city=" + city
+				+ ", state=" + state + ", zipcode=" + zipcode + ", mailbox=" + mailbox + "]";
+	}
+
+	class SortByZipcode implements Comparator <Customer>{
+		@Override
+		public int compare(Customer o1, Customer o2) {
+			return o1.getZipcode()- o2.getZipcode();
+		}	
+	}
+	
+	class SortByHouseNumber implements Comparator <Customer>{
+		@Override
+		public int compare(Customer o1, Customer o2) {
+			return o1.getHouseNum()- o2.getHouseNum();
+		}	
 	}
 
 }
