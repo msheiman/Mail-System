@@ -98,5 +98,4 @@ public class Customer {
 			return o1.getHouseNum()- o2.getHouseNum();
 		}	
 	}
-
 }
