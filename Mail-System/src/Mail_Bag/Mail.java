@@ -35,11 +35,11 @@ public class Mail {
 	/**
 	 * Method name: generateTrackingNumber
 	 * Heading: public String generateTrackingNumber()
-	 * Description:
-	 * Parameters:
-	 * Precondition:
-	 * Postcondition:
-	 * Throws list:
+	 * Description: creates tracking Number
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: returns tracking number
+	 * Throws list: none
 	 */
 	public String generateTrackingNumber() {
 		String tracking = "";
