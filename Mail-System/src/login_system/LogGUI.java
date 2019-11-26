@@ -1,6 +1,6 @@
 package login_system;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LogGUI {
+@SuppressWarnings("serial")
+public class LogGUI extends JFrame implements ActionListener{
 
 	private JFrame frame;
 	
@@ -47,14 +48,55 @@ public class LogGUI {
 	private JButton employeeSubmitButton = new JButton("Submit");
 	private JButton employeeLoginButton = new JButton("Login");
 	private JButton employeeCreationButton = new JButton("New Employee");
-	private JButton rejectionConfirmationButton = new JButton("Ok");
+	private JButton rejectionConfirmationButton = new JButton("OK");
+	
+	// INSTANCE VARIABLEs
 	
 	
+	public LogGUI (String title) {
+		super(title);
+		setSize(1005,415); //set the size
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default exit method
+		
 	
+		
+		setActionCommand(); //call action command method
+		setVisible(true); //set frame to be visible
+	}
+	
+	
+	private void setActionCommand() {
+		
+		loginButton.addActionListener(this);
+		loginButton.setActionCommand("Employee Login");
+		
+		searchButton.addActionListener(this);
+		searchButton.setActionCommand("Search");
+
+		employeeSubmitButton.addActionListener(this);
+		employeeSubmitButton.setActionCommand("Submit");
+		
+		employeeLoginButton.addActionListener(this);
+		employeeLoginButton.setActionCommand("Login");
+		
+		employeeCreationButton.addActionListener(this);
+		employeeCreationButton.setActionCommand("New Employee");
+		
+		rejectionConfirmationButton.addActionListener(this);
+		rejectionConfirmationButton.setActionCommand("OK");
+	}
+
+
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
+		
+		@SuppressWarnings("unused")
+		LogGUI frame = new LogGUI("Login Page");
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,20 +107,23 @@ public class LogGUI {
 				}
 			}
 		});
+		
 	}
-
+*/
 	/**
 	 * Create the application.
 	 */
-	public LogGUI() {
-		initialize();
-	}
+	
+	//public LogGUI() {
+	//	initialize();
+	//}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("unused")
 	private void initialize() {
-		frame = new JFrame();
+		//frame = new JFrame();
 		frame.setBounds(100, 100, 879, 555);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -105,12 +150,6 @@ public class LogGUI {
 			}
 		});
 		
-		//JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String trackingNumber = trackingNumberTextField.getText();
-			}
-		});
 		searchButton.setBounds(301, 49, 89, 23);
 		mainLoginPanel.add(searchButton);
 		loginButton.setBounds(727, 482, 126, 23);
@@ -225,5 +264,16 @@ public class LogGUI {
 		//JButton rejectionConfirmationButton = new JButton("Ok");
 		rejectionConfirmationButton.setBounds(374, 34, 89, 23);
 		rejectionPanel.add(rejectionConfirmationButton);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String action = e.getActionCommand();
+		if (action.equals("Search")){
+			@SuppressWarnings("unused")
+			String trackingNumber = trackingNumberTextField.getText();
+		}
+		
 	}
 }
