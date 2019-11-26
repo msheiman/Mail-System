@@ -7,21 +7,60 @@ public class Mail {
 	private String trackingNumber;
 	private boolean signature;
 	
+	/**
+	 * description: creates constructor 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: creates constructor 
+	 * throws: none
+	 */
 	public Mail(double weight, boolean signature) {
 		super();
 		this.weight = weight;
 		this.trackingNumber = generateTrackingNumber();
 		this.signature = signature;
 	}
+	
+	/**
+	 * description: gets weight 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: return weight 
+	 * throws: none
+	 */
 	public double getWeight() {
 		return weight;
 	}
+	
+	/**
+	 * description: set weight 
+	 * parameters: double weight
+	 * precondition: is called 
+	 * postcondition: set weight 
+	 * throws: none
+	 */
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+	
+	/**
+	 * description: returns tracking number 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: returns trackingNumber
+	 * throws: none
+	 */
 	public String getTrackingNumber() {
 		return trackingNumber;
 	}
+	
+	/**
+	 * description: sets trackingNumber 
+	 * parameters: trackingNumber
+	 * precondition: is called 
+	 * postcondition: sets tracking 
+	 * throws: none
+	 */
 	public void setTrackingNumber(String  trackingNumber) {
 		this.trackingNumber = trackingNumber;
 	}
@@ -44,12 +83,12 @@ public class Mail {
 	public String generateTrackingNumber() {
 		String tracking = "";
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	    Random rnd = new Random();
-	    char char1 = alphabet.charAt(rnd.nextInt(alphabet.length()));
-	    char char2 = alphabet.charAt(rnd.nextInt(alphabet.length()));
+	    	Random rnd = new Random();
+		char char1 = alphabet.charAt(rnd.nextInt(alphabet.length()));
+	   	char char2 = alphabet.charAt(rnd.nextInt(alphabet.length()));
 		int number = (int) ((Math.random() * ((99999999 - 10000000) + 1)) + 10000000);
 		tracking = char1 + char2 + String.valueOf(number);
-		return tracking;
+		return trackingNumber;
 	}
 	@Override
 	public String toString() {
