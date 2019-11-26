@@ -75,12 +75,17 @@ public class LogGUI {
 				//employeeLoginPanel.setVisible(true);
 			}
 		});
-		loginButton.setBounds(727, 482, 126, 23);
-		mainLoginPanel.add(loginButton);
 		
 		JButton searchButton = new JButton("Search");
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String trackingNumber = trackingNumberTextField.getText();
+			}
+		});
 		searchButton.setBounds(301, 49, 89, 23);
 		mainLoginPanel.add(searchButton);
+		loginButton.setBounds(727, 482, 126, 23);
+		mainLoginPanel.add(loginButton);
 		
 		JPanel employeeCreationPanel = new JPanel();
 		employeeCreationPanel.setBounds(0, 0, 863, 516);
