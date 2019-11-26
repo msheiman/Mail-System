@@ -109,6 +109,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		//Main method
 		public static void main(String[] args) {
 			@SuppressWarnings("unused")
-			WelcomeGUI frame = new WelcomeGUI("KIM NGUYEN CLINIC");
+			WelcomeGUI frame = new WelcomeGUI("MNS MAIL SERVICE");
 		}
 	}
