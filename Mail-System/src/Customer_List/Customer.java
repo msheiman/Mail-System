@@ -83,7 +83,7 @@ public class Customer {
 	public String toString() {
 		return name + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
 	}
-
+}
 	class SortByZipcode implements Comparator <Customer>{
 		@Override
 		public int compare(Customer o1, Customer o2) {
@@ -97,4 +97,4 @@ public class Customer {
 			return o1.getHouseNum()- o2.getHouseNum();
 		}	
 	}
-}
+
