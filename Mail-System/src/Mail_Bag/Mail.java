@@ -64,9 +64,25 @@ public class Mail {
 	public void setTrackingNumber(String  trackingNumber) {
 		this.trackingNumber = trackingNumber;
 	}
+	
+	/**
+	 * description: returns signature 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: sets signature 
+	 * throws: none
+	 */
 	public boolean isSignature() {
 		return signature;
 	}
+	
+	/**
+	 * description: sets boolean signature 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: sets boolean signature
+	 * throws: none
+	 */
 	public void setSignature(boolean signature) {
 		this.signature = signature;
 	}
@@ -90,6 +106,14 @@ public class Mail {
 		tracking = char1 + char2 + String.valueOf(number);
 		return trackingNumber;
 	}
+	
+	/**
+	 * description: creates string of mail
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: creates string
+	 * throws: none
+	 */
 	@Override
 	public String toString() {
 		return "weight=" + weight + ", trackingNumber=" + trackingNumber + ", signature=" + signature + "";
