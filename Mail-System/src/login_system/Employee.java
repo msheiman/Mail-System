@@ -7,14 +7,21 @@ public class Employee {
 	private String user;
 	private String password;
 	private String email;
+	private String firstName;
+	private String lastName;
+	
 
-	public Employee(String u, String p, String e) {
+	Employee(String u, String p, String e, String fn, String ln) {
+		this.firstName = fn;
+		this.lastName = ln;
 		this.user = u;
 		this.password = p;
 		this.email = e;
 	}
 
-	public Employee() {
+	Employee() {
+		this.firstName = null;
+		this.lastName = null;
 		this.user = null;
 		this.password = null;
 		this.email = null;
@@ -44,4 +51,21 @@ public class Employee {
 		this.email = email;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	
 }
