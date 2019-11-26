@@ -40,6 +40,14 @@ public class driverGUI extends JFrame implements ActionListener {
 	
 	private Font font = new Font("Times new Roman", Font.BOLD, 54);
 	
+	
+	/**
+	 * description: creates constructor 
+	 * parameters: String title
+	 * precondition: is called 
+	 * postcondition: creates constructor 
+	 * throws: none
+	 */
 	public driverGUI (String title) {
 		super(title);
 		setSize(1005,415); //set the size
@@ -51,6 +59,14 @@ public class driverGUI extends JFrame implements ActionListener {
 		setVisible(true); //set frame to be visible
 	}
 	
+	
+	/**
+	 * description: adds listener for button
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: adds listener 
+	 * throws: none
+	 */
 	private void setActionCommand() {
 		yesBtn.addActionListener(this);
 		yesBtn.setActionCommand("Yes");
@@ -59,14 +75,21 @@ public class driverGUI extends JFrame implements ActionListener {
 		noBtn.setActionCommand("No");
 	}
 
+	/**
+	 * description: creates actions 
+	 * parameters: none
+	 * precondition: button is present 
+	 * postcondition: performs action
+	 * throws: none
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
-		//if the user chooses continue, open the BMI analyzer frame or AnalyzeGUI frame
+		//if the user chooses yes, removes item from bag
 		if (action.equals("Yes")) {
 			bag.pop();
 		}
-		//If the user chooses cancel, exit program
+		//If the user chooses no, push item to bag2 and removes from bag
 		else if (action.equals("No")) {
 			String temp = bag.pop();
 			bag2.push(temp);
@@ -74,19 +97,32 @@ public class driverGUI extends JFrame implements ActionListener {
 		
 	}
 	
-	
+	/**
+	 * description: adds text to panel 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: displays bag
+	 * throws: none
+	 */
 	public void centeringText() {
-		 SimpleAttributeSet attrs = new SimpleAttributeSet();
-        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
-        StyledDocument doc=(StyledDocument) textPanel.getDocument();
-        try {
+		SimpleAttributeSet attrs = new SimpleAttributeSet();
+        	StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
+       		StyledDocument doc=(StyledDocument) textPanel.getDocument();
+        	try {
 			doc.insertString(0,bag.toString(),attrs);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-       doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
+       		doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
 	}
 	
+	/**
+	 * description: creates display panel 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: displays panel 
+	 * throws: none
+	 */
 	public void buildPanel() {
 		textPanel.setFont(font); // set font
 		textPanel.setEditable(false); //set the pane uneditable
@@ -95,6 +131,13 @@ public class driverGUI extends JFrame implements ActionListener {
 		driverPanel.add(textPanel); //add pane to panel
 	}
 	
+	/**
+	 * description: creates panel 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: creates panel 
+	 * throws: none
+	 */
 	public void buildButtonPanel() {
 		boolPanel.setLayout(new FlowLayout()); //use flowLayout 
 		boolPanel.add(boolLabel);
