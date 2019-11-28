@@ -1,6 +1,8 @@
-Welcome to the Github
+Project: MAIL SYSTEM
 
-This is just a simple readme file for the project
+Author: Mel McCormack, Kim Tien Nguyen, Michael Sheiman
+For course: CSCI 2082.01
 
-I am going to use the "login_system" package to create the login system, 
-and user storage
+Purpose: Create a program for both customers and employees. 
+         For customers, it allows users to track the packages and mails by tracking number.
+         For employees, it allows them to login using personal credentials, add mail information, and generate delivery route.
