@@ -212,7 +212,7 @@ public class Customer {
 	}
 	
 	/**
-	 * description: sorts customer by housenum 
+	 * description: sorts customer by house number 
 	 * parameters: Customer o1, Customer o2
 	 * precondition: is called 
 	 * postcondition: returns compare 
