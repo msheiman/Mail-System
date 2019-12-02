@@ -150,7 +150,7 @@ public class LogGUI extends JFrame implements ActionListener{
 	 * Parameters: none
 	 * Precondition: none
 	 * Postcondition: panel with components added
-	 * Throws list:none
+	 * Throws list: none
 	 */
 	public void buildEmployeeCreationPanel() {
 		
@@ -267,24 +267,26 @@ public class LogGUI extends JFrame implements ActionListener{
 			@SuppressWarnings("unused")
 			String trackingNumber = trackingNumberTextField.getText();
 		}
+		else if (action.equals("Employee Login")) {
+			employeeLoginPanel.setVisible(true);
+		}
+		else if (action.equals("Login")) {	
+			
+		}
 		else if (action.equals("New Employee")) {
 			
 		}
 		else if (action.equals("Submit")) {
+			@SuppressWarnings("unused")
 			Employee employee = new Employee(employeeFirstNameTextField.getText(), employeeLastNameTextField.getText(),
 					employeeEmailTextField.getText(), employeeUsernameTextField.getText(),
 					employeePasswordTextField.getText());
 			//Driver.list.addTail(employee);
 			employeeCreationPanel.setVisible(false);
 		}
-		else if (action.equals("Employee Login")) {
-			employeeLoginPanel.setVisible(true);
-		}
 		else if (action.equals("OK")) {
 			
 		}
-		else if (action.equals("Login")) {
-			
-		}
+		
 	}
 }
