@@ -1,8 +1,10 @@
 package login_system;
 
+import Employee_System.EmployeeList;
+
 public class Authenticator {
 
-	Authenticator(Token t, EmployeeList el) {
+	public Authenticator(Token t, EmployeeList el) {
 		if (authenticate(t, el)) {
 			// pass correct token and log in employee
 		}

@@ -1,4 +1,6 @@
-package login_system;
+package Employee_System;
+
+import login_system.UserNode;
 
 //employee list
 // will rename to employee list later 
@@ -10,12 +12,12 @@ public class EmployeeList {
 
 	public void addTail(Employee element) {
 		tail = tail.setLink(new UserNode(element, null));
-		listLength++;
+		setListLength(getListLength() + 1);
 	}
 
 	public void addHead(Employee element) {
 		head = new UserNode(element, head);
-		listLength++;
+		setListLength(getListLength() + 1);
 	}
 
 	public boolean remove(Employee target) {
@@ -24,7 +26,7 @@ public class EmployeeList {
 		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
 			if (c.getUser() == target) {
 				p.setLink(c.getLink());
-				listLength--;
+				setListLength(getListLength() - 1);
 				return true;
 			}
 		}
@@ -34,6 +36,7 @@ public class EmployeeList {
 
 	public int checkUsername(String uName) {
 		UserNode c;
+		@SuppressWarnings("unused")
 		UserNode p;
 		Employee e;
 		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
@@ -47,6 +50,7 @@ public class EmployeeList {
 
 	public int checkPassword(String pw) {
 		UserNode c;
+		@SuppressWarnings("unused")
 		UserNode p;
 		Employee e;
 		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
@@ -56,6 +60,14 @@ public class EmployeeList {
 			}
 		}
 		return 1;
+	}
+
+	public int getListLength() {
+		return listLength;
+	}
+
+	public void setListLength(int listLength) {
+		this.listLength = listLength;
 	}
 
 }

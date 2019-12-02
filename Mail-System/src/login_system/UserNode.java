@@ -1,5 +1,7 @@
 package login_system;
 
+import Employee_System.Employee;
+
 //node for the user linked list
 //will rename to employee node later
 public class UserNode {

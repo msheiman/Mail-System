@@ -5,9 +5,17 @@ package login_system;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Employee_System.Employee;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -285,8 +293,32 @@ public class LogGUI extends JFrame implements ActionListener{
 			employeeCreationPanel.setVisible(false);
 		}
 		else if (action.equals("OK")) {
+			rejectionPanel.setVisible(false);
+		}	
+	}
+	
+	public void writeCSV() {
+		BufferedWriter fileIn = null; //declare a file
+		try {
+			fileIn = new BufferedWriter( new FileWriter("sortedProducts.csv", true)); //create new file
+			//Write each item in arrayList into file
 			
+				Component p;
+				//Append item to file and separate them by comma delimiter
+				//fileIn.append(String.valueOf(p.getUid()));
+				fileIn.append(",");
+				//fileIn.append(String.valueOf(p.getPrice()));
+				fileIn.append(",");
+				//fileIn.append(p.getName());
+				fileIn.append(",");
+				//fileIn.append(p.getDescription());
+				fileIn.append("\n");
+			
+			fileIn.close(); //Close file
+		} catch (IOException e) {
+			e.printStackTrace();	
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
 	}
 }

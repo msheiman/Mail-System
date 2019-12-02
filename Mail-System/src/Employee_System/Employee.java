@@ -1,25 +1,26 @@
-package login_system;
+package Employee_System;
 
 public class Employee {
 
 //class for storing data of the employee
 // will rename to employee later
-	private String user;
-	private String password;
-	private String email;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String user;
+	private String password;
 	
 
-	Employee(String u, String p, String e, String fn, String ln) {
-		this.firstName = fn;
-		this.lastName = ln;
-		this.user = u;
-		this.password = p;
-		this.email = e;
+
+	public Employee(String firstName, String lastName, String email, String user, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.user = user;
+		this.password = password;
 	}
 
-	Employee() {
+	public Employee() {
 		this.firstName = null;
 		this.lastName = null;
 		this.user = null;

@@ -22,7 +22,6 @@ import Mail_Bag.MailCollection;
 @SuppressWarnings("serial")
 public class driverGUI extends JFrame implements ActionListener {
 
-	private JFrame driverFrame;
 	private JPanel driverPanel;
 	private JPanel boolPanel;
 	
@@ -53,7 +52,11 @@ public class driverGUI extends JFrame implements ActionListener {
 		setSize(1005,415); //set the size
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default exit method
 		
-	
+		buildPanel();
+		buildButtonPanel();
+		
+		add(driverPanel, BorderLayout.CENTER);
+		add(boolPanel, BorderLayout.SOUTH);
 		
 		setActionCommand(); //call action command method
 		setVisible(true); //set frame to be visible
