@@ -289,7 +289,7 @@ public class LogGUI extends JFrame implements ActionListener{
 			Employee employee = new Employee(employeeFirstNameTextField.getText(), employeeLastNameTextField.getText(),
 					employeeEmailTextField.getText(), employeeUsernameTextField.getText(),
 					employeePasswordTextField.getText());
-			//Driver.list.addTail(employee);
+			writeToFile(employee); // Add the employee information to CVS File
 			employeeCreationPanel.setVisible(false);
 		}
 		else if (action.equals("OK")) {
@@ -297,22 +297,33 @@ public class LogGUI extends JFrame implements ActionListener{
 		}	
 	}
 	
-	public void writeCSV() {
-		BufferedWriter fileIn = null; //declare a file
+	public void creatFile() {
+		@SuppressWarnings("unused")
+		BufferedWriter fileIn = null;
 		try {
-			fileIn = new BufferedWriter( new FileWriter("sortedProducts.csv", true)); //create new file
-			//Write each item in arrayList into file
+			fileIn = new BufferedWriter(new FileWriter("Mail-System/src/Employee_System/EmployeeSystem.csv", true)); //create new file
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeToFile(Employee employee) {
+		FileWriter fileIn = null; //declare a file
+		try {
+			fileIn = new FileWriter("Mail-System/src/Employee_System/EmployeeSystem.csv", true); //create new file
 			
-				Component p;
-				//Append item to file and separate them by comma delimiter
-				//fileIn.append(String.valueOf(p.getUid()));
-				fileIn.append(",");
-				//fileIn.append(String.valueOf(p.getPrice()));
-				fileIn.append(",");
-				//fileIn.append(p.getName());
-				fileIn.append(",");
-				//fileIn.append(p.getDescription());
-				fileIn.append("\n");
+			//Write each item in arrayList into file
+			//Append item to file and separate them by comma delimiter
+			fileIn.append(String.valueOf(employee.getFirstName()));
+			fileIn.append(",");
+			fileIn.append(String.valueOf(employee.getLastName()));
+			fileIn.append(",");
+			fileIn.append(employee.getEmail());
+			fileIn.append(",");
+			fileIn.append(employee.getUser());
+			fileIn.append(",");
+			fileIn.append(employee.getPassword());
+			fileIn.append("\n");
 			
 			fileIn.close(); //Close file
 		} catch (IOException e) {
