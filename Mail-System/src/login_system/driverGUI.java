@@ -116,7 +116,7 @@ public class driverGUI extends JFrame implements ActionListener {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-       		doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
+       	doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
 	}
 	
 	/**

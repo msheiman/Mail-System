@@ -11,7 +11,7 @@ public class Customer {
 	private String city;
 	private String state;
 	private int zipcode;
-	private Mail_Bag.MailCollection mailbox;
+	private MailCollection mailbox;
 
 	/**
 	 * description: creates constructor 

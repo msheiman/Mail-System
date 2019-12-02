@@ -61,7 +61,7 @@ public class Mail {
 	 * postcondition: sets tracking 
 	 * throws: none
 	 */
-	public void setTrackingNumber(String  trackingNumber) {
+	public void setTrackingNumber(String trackingNumber) {
 		this.trackingNumber = trackingNumber;
 	}
 	
@@ -116,7 +116,9 @@ public class Mail {
 	 */
 	@Override
 	public String toString() {
-		return "weight=" + weight + ", trackingNumber=" + trackingNumber + ", signature=" + signature + "";
+		String info = "";
+		info = "%-";
+		return info;
 	}
 	
 }
