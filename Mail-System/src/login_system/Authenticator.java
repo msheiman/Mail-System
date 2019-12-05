@@ -5,9 +5,7 @@ import Employee_System.EmployeeList;
 public class Authenticator {
 
 	public Authenticator(Token t, EmployeeList el) {
-		if (authenticate(t, el)) {
-			// pass correct token and log in employee
-		}
+	authenticate(t, el); 
 	}
 
 	public boolean authenticate(Token t, EmployeeList el) {

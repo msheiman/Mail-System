@@ -279,10 +279,15 @@ public class LogGUI extends JFrame implements ActionListener{
 			employeeLoginPanel.setVisible(true);
 		}
 		else if (action.equals("Login")) {	
-			
+			Token login = new Token(textField_1.getText(), textField_2.getText);
+			if (Authenticator(Token, fileIn)) {
+				DriverGUI newDriver = new DriverGUI("Driver Page");
+			} else {
+				rejectionPanel.setVisible(true);
+			}
 		}
 		else if (action.equals("New Employee")) {
-			
+			employeeCreationPanel.setVisible(true);			
 		}
 		else if (action.equals("Submit")) {
 			@SuppressWarnings("unused")
