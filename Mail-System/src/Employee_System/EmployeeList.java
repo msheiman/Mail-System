@@ -1,65 +1,106 @@
 package Employee_System;
 
-import login_system.UserNode;
-
-//employee list
-// will rename to employee list later 
-
-public class EmployeeList {
-	private UserNode head;
-	private UserNode tail;
+public class EmployeeList{
+	private EmployeeNode head;
+	private EmployeeNode tail;
 	private int listLength;
-
-	public void addTail(Employee element) {
-		tail = tail.setLink(new UserNode(element, null));
-		setListLength(getListLength() + 1);
+	
+	public EmployeeList() {
+		this.head = null;
+		this.tail = null;
+		this.listLength = 0;
 	}
 
-	public void addHead(Employee element) {
-		head = new UserNode(element, head);
-		setListLength(getListLength() + 1);
+	public void add(Employee emp) {
+		if(tail == null) {
+			head = new EmployeeNode(emp, null);
+			tail = head;
+		}
+		else {
+			EmployeeNode newNode = new EmployeeNode(emp, null);
+			tail.setLink(newNode);
+			tail = newNode;
+		}
+		listLength++;
+	}
+
+	public void addFirst(Employee emp) {
+		head = new EmployeeNode(emp, head);
+		listLength++;
 	}
 
 	public boolean remove(Employee target) {
-		UserNode c;
-		UserNode p;
-		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
-			if (c.getUser() == target) {
-				p.setLink(c.getLink());
-				setListLength(getListLength() - 1);
+		EmployeeNode cursor;
+		EmployeeNode precursor;
+		
+		for(precursor = null, cursor = head; cursor != null;
+				precursor = cursor, cursor = cursor.getLink()) {
+			
+			if (cursor.getData().equals(target)) {
+				if (precursor == null) {
+					head = head.getLink();
+				} else {
+					precursor.setLink(cursor.getLink());
+				}
+				listLength--;
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	public int checkUsername(String uName) {
-		UserNode c;
-		@SuppressWarnings("unused")
-		UserNode p;
-		Employee e;
-		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
-			e = c.getUser();
-			if (e.getUser() == uName) {
-				return 2;
+	public boolean checkUsername(String username) {
+		if (username == null) {
+			throw new IllegalArgumentException("Illegal Username\n");
+		}
+		
+		EmployeeNode cursor = head;
+		boolean flag = false;
+		
+		if (cursor == null)
+			throw new NullPointerException ("Employee List is empty.");
+		else {
+			// other wise, compare the id of data of linked list and the argument
+			// from the head to the node before the tail
+			while (cursor != null) {
+				if (cursor.getData().getUser().equals(username)) {
+					// if the target is found, change the flag to true
+					// and break the loop
+					flag = true;
+					break;
+				}
+				// move to next link if current node is not target node
+				cursor = cursor.getLink();
 			}
 		}
-		return 1;
+		return flag;
 	}
 
-	public int checkPassword(String pw) {
-		UserNode c;
-		@SuppressWarnings("unused")
-		UserNode p;
-		Employee e;
-		for (c = head, p = null; c.getLink() != null; p = c, c.setLink(c.getLink())) {
-			e = c.getUser();
-			if (e.getPassword() == pw) {
-				return 2;
+	public boolean checkPassword(String password) {
+		if (password == null || password.trim() ==  "") {
+			throw new IllegalArgumentException("Illegal Username\n");
+		}
+		
+		EmployeeNode cursor = head;
+		boolean flag = false;
+		
+		if (cursor == null)
+			throw new NullPointerException ("Employee List is empty.");
+		else {
+			// other wise, compare the id of data of linked list and the argument
+			// from the head to the node before the tail
+			while (cursor != null) {
+				if (cursor.getData().getPassword().equals(password)) {
+					// if the target is found, change the flag to true
+					// and break the loop
+					flag = true;
+					break;
+				}
+				// move to next link if current node is not target node
+				cursor = cursor.getLink();
 			}
 		}
-		return 1;
+		return flag;
 	}
 
 	public int getListLength() {

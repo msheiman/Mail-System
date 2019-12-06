@@ -3,16 +3,19 @@ package login_system;
 import Employee_System.EmployeeList;
 
 public class Authenticator {
+	private Token t;
+	private EmployeeList list;
 
 	public Authenticator(Token t, EmployeeList el) {
-	authenticate(t, el); 
+		this.t = t;
+		this.list = el;
 	}
 
-	public boolean authenticate(Token t, EmployeeList el) {
-		int userCode = el.checkUsername(t.getUser());
-		int passCode = el.checkPassword(t.getPword());
+	public boolean authenticate() {
+		boolean userCheck = list.checkUsername(t.getUser());
+		boolean passCheck = list.checkPassword(t.getPword());
 
-		if (userCode == 2 && passCode == 2) {
+		if (userCheck == true && passCheck == true) {
 			return true;
 		}
 		return false;

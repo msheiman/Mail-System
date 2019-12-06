@@ -7,11 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Employee_System.Employee;
+import Employee_System.EmployeeList;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -279,9 +282,11 @@ public class LogGUI extends JFrame implements ActionListener{
 			employeeLoginPanel.setVisible(true);
 		}
 		else if (action.equals("Login")) {	
-			Token login = new Token(textField_1.getText(), textField_2.getText);
-			if (Authenticator(Token, fileIn)) {
-				DriverGUI newDriver = new DriverGUI("Driver Page");
+			Token login = new Token(textField_1.getText(), textField_2.getText());
+			EmployeeList employeeList = readCSV("Mail-System/src/Employee_System/EmployeeSystem.csv");
+			Authenticator check = new Authenticator(login, employeeList);
+			if (check.authenticate()) {
+				driverGUI newDriver = new driverGUI("Driver Page");
 			} else {
 				rejectionPanel.setVisible(true);
 			}
@@ -301,7 +306,7 @@ public class LogGUI extends JFrame implements ActionListener{
 			rejectionPanel.setVisible(false);
 		}	
 	}
-	
+
 	public void creatFile() {
 		@SuppressWarnings("unused")
 		BufferedWriter fileIn = null;
@@ -336,5 +341,33 @@ public class LogGUI extends JFrame implements ActionListener{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private static EmployeeList readCSV(String fileName){
+		
+		System.out.print(fileName);
+		EmployeeList list = new EmployeeList();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String line = br.readLine(); //read every line
+			while(line != null) {
+				String[] attributes = line.split(","); //remove delimiter
+				Employee employee = createEmployee(attributes); //create a Product object
+				list.add(employee); //add item to linked list
+				line = br.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;	
+	}
+	
+	private static Employee createEmployee(String[] data) {
+		String firstName = data[0];
+		String lastName = data[1];
+		String email = data[2];
+		String username = data[3];
+		String password = data[4];
+		return new Employee(firstName, lastName, email, username, password);
 	}
 }
