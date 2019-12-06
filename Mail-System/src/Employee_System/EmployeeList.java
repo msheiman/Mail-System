@@ -25,23 +25,41 @@ public class EmployeeList{
 	}
 
 	public void addFirst(Employee emp) {
+		if (emp.equals(null))
+			throw new IllegalArgumentException("Cannot add to the beginning of list because parameter is invalid.\n");
 		head = new EmployeeNode(emp, head);
 		listLength++;
 	}
 
 	public boolean remove(Employee target) {
+		if (target.equals(null))
+			throw new IllegalArgumentException("Cannot remove the employee from the list because parameter is invalid.\n");
+		
+		// create 2 nodes to keep track of a node and a node before it
 		EmployeeNode cursor;
 		EmployeeNode precursor;
 		
+		// cursor runs from head to a node that's not null, precursor runs from null
+		// update: cursor goes to next node, precursor goes to cursor's place
 		for(precursor = null, cursor = head; cursor != null;
 				precursor = cursor, cursor = cursor.getLink()) {
 			
+			// if data of the node that cursor currently points equals to the target
+			// check of precursor is null
 			if (cursor.getData().equals(target)) {
+				
+				// if it's null, it means target is found at the head of list
+				// head will become the next node
+				// found target will be removed
 				if (precursor == null) {
 					head = head.getLink();
-				} else {
+				} 
+				// otherwise, move both cursor and precursor to next nodes
+				else {
 					precursor.setLink(cursor.getLink());
 				}
+				
+				// decrease the number of links in list
 				listLength--;
 				return true;
 			}
@@ -102,13 +120,30 @@ public class EmployeeList{
 		}
 		return flag;
 	}
-
-	public int getListLength() {
-		return listLength;
-	}
-
-	public void setListLength(int listLength) {
-		this.listLength = listLength;
+	
+	/**
+	 * Method name: countSize
+	 * Heading: public int countSize() 
+	 * Description: to count the number of element in the linked list
+	 * Parameters: none
+	 * Precondition: the temporary counter is not null
+	 * Postcondition: return the number of elements in linked list
+	 * Throws list: N/A
+	 */
+	public int countSize() { 
+		
+		// create a node named temp pointing at head of list
+		EmployeeNode temp = head; 
+		// create a counter and initialize 0 to it
+		listLength = 0; 
+		// temp runs from head to the end
+	    while (temp != null) { 
+	    	//counter upgrades by 1 each time
+	    	listLength++; 
+	    	//go to next node
+	    	temp = temp.getLink(); 
+	    } 
+	    return listLength; 
 	}
 
 }
