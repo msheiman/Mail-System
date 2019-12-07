@@ -11,7 +11,7 @@ public class Authenticator {
 	 * Heading: public Authenticator(Token t, EmployeeList el) 
 	 * Description: to create the constructor of Authenticator
 	 * Parameters: Token t, EmployeeList el
-	 * Precondition: the contructor is called
+	 * Precondition: the constructor is called
 	 * Postcondition: creates the constructor
 	 * Throws list: N/A
 	 */
