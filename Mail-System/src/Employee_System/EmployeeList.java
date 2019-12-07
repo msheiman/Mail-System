@@ -5,12 +5,30 @@ public class EmployeeList{
 	private EmployeeNode tail;
 	private int listLength;
 	
+	/**
+	 * Method name: EmployeeList()
+	 * Heading: public EmployeeList() 
+	 * Description: to create the constructor of EmployeeList
+	 * Parameters: none
+	 * Precondition: the contructor is called
+	 * Postcondition: creates the constructor
+	 * Throws list: N/A
+	 */
 	public EmployeeList() {
 		this.head = null;
 		this.tail = null;
 		this.listLength = 0;
 	}
 
+	/**
+	 * Method name: add()
+	 * Heading: public void add(Employee emp) 
+	 * Description: to add Employee to a Linked List
+	 * Parameters: Employee emp
+	 * Precondition: the tail is not null
+	 * Postcondition: adds new Employee to the tail
+	 * Throws list: N/A
+	 */
 	public void add(Employee emp) {
 		if(tail == null) {
 			head = new EmployeeNode(emp, null);
@@ -24,13 +42,31 @@ public class EmployeeList{
 		listLength++;
 	}
 
+	/**
+	 * Method name: addFirst()
+	 * Heading: public void addFirst(Employee emp) 
+	 * Description: to add Employee to the beginning of a Linked List
+	 * Parameters: Employee emp
+	 * Precondition: if emp.equals(null) is false
+	 * Postcondition: adds new Employee to the head
+	 * Throws list: IllegalArgumentException("Cannot add to the beginning of list because parameter is invalid.")
+	 */	
 	public void addFirst(Employee emp) {
 		if (emp.equals(null))
 			throw new IllegalArgumentException("Cannot add to the beginning of list because parameter is invalid.\n");
 		head = new EmployeeNode(emp, head);
 		listLength++;
 	}
-
+	
+	/**
+	 * Method name: remove()
+	 * Heading: public boolean remove(Employee emp) 
+	 * Description: to removes Employee to a Linked List
+	 * Parameters: Employee target
+	 * Precondition: if target is found in getData()
+	 * Postcondition: remove node, connect seperated nodes
+	 * Throws list: IllegalArgumentException("Cannot remove the employee from the list because parameter is invalid.")
+	 */
 	public boolean remove(Employee target) {
 		if (target.equals(null))
 			throw new IllegalArgumentException("Cannot remove the employee from the list because parameter is invalid.\n");
@@ -67,6 +103,16 @@ public class EmployeeList{
 		return false;
 	}
 
+	/**
+	 * Method name: checkUserName()
+	 * Heading: public boolean checkUsername(String username) 
+	 * Description: to add Employee to a Linked List
+	 * Parameters: String userName
+	 * Precondition: if getUser() equals username
+	 * Postcondition: returns true or false
+	 * Throws list: IllegalArgumentException("Illegal Username")
+	 		NullPointerException ("Employee List is empty.")
+	 */
 	public boolean checkUsername(String username) {
 		if (username == null) {
 			throw new IllegalArgumentException("Illegal Username\n");
@@ -94,6 +140,15 @@ public class EmployeeList{
 		return flag;
 	}
 
+	/**
+	 * Method name: checkPassword()
+	 * Heading: public boolean checkPassword(String password) 
+	 * Description: to check password to see if correct
+	 * Parameters: String password
+	 * Precondition: if getPassword equals password is false
+	 * Postcondition: return true or false
+	 * Throws list: N/A
+	 */
 	public boolean checkPassword(String password) {
 		if (password == null || password.trim() ==  "") {
 			throw new IllegalArgumentException("Illegal Username\n");
