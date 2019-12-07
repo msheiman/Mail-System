@@ -307,6 +307,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		}	
 	}
 
+	/**
+	 * Method name: creat()
+	 * Heading: public void creatFile 
+	 * Description: fileIn is a writer
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: creates fileIn
+	 * Throws list: IOException e
+	 */
 	public void creatFile() {
 		@SuppressWarnings("unused")
 		BufferedWriter fileIn = null;
@@ -316,7 +325,17 @@ public class LogGUI extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Method name: writeToFile(Employee employee)
+	 * Heading: public void writeToFile(Employee employee) 
+	 * Description: to write items in arrayList in file
+	 * Parameters: Employee employee
+	 * Precondition: the tail is not null
+	 * Postcondition: appends items to file
+	 * Throws list: IOException e
+	 		Exception e
+	 */
 	public void writeToFile(Employee employee) {
 		FileWriter fileIn = null; //declare a file
 		try {
@@ -343,6 +362,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Method name: readCSV()
+	 * Heading: private static EmployeeList readCSV(String fileName) 
+	 * Description: to reads CSV
+	 * Parameters: String fileName
+	 * Precondition: is called
+	 * Postcondition: returns EmployeeList list
+	 * Throws list: IOException e
+	 */
 	private static EmployeeList readCSV(String fileName){
 		
 		System.out.print(fileName);
@@ -362,6 +390,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		return list;	
 	}
 	
+	/**
+	 * Method name: createEmployee()
+	 * Heading: createEmployee(String[] data)
+	 * Description: to sets and returns Employee
+	 * Parameters: String[] data
+	 * Precondition: is called
+	 * Postcondition: returns new Employee(firstName, lastName, email, username, password)
+	 * Throws list: N/A
+	 */
 	private static Employee createEmployee(String[] data) {
 		String firstName = data[0];
 		String lastName = data[1];
