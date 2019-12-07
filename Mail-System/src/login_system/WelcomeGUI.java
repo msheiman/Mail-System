@@ -35,7 +35,16 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	//TextPane
 	private JTextPane textPane = new JTextPane();
 		
-	//Create a frame
+	
+	/**
+	 * Method name: Welcome()
+	 * Heading: public WelcomeGUI(String title)
+	 * Description: to create the frame of the GUI
+	 * Parameters: String title
+	 * Precondition: the frame is called
+	 * Postcondition: creates the frame
+	 * Throws list: N/A
+	 */
 	public WelcomeGUI(String title) {
 		super(title);
 		setSize(550,400); //set size of frame
@@ -50,65 +59,108 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			setVisible(true);
 		}
 
-		//Method to set the text at the center of the pane
-		public void centeringText() {
-			 SimpleAttributeSet attrs = new SimpleAttributeSet();
-	         StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
-	         StyledDocument doc=(StyledDocument) textPane.getDocument();
-	         try {
-				doc.insertString(0,"\nWELCOME\nto\nMNS Mail Service\n",attrs);
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
+	/**
+	 * Method name: centeringText()
+	 * Heading: public void centeringText()
+	 * Description: to set the text at the center of the pane
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: centers the text
+	 * Throws list: BadLocationexception e
+	 */
+	public void centeringText() {
+		SimpleAttributeSet attrs = new SimpleAttributeSet();
+	        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
+	        StyledDocument doc=(StyledDocument) textPane.getDocument();
+	        try {
+			doc.insertString(0,"\nWELCOME\nto\nMNS Mail Service\n",attrs);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 	        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
 		}
 		
-		//Build panel consisting of JTextPane
-		public void buildPanel() {
-			textPane.setFont(font); // set font
-			textPane.setEditable(false); //set the pane uneditable
-			textPane.setBorder(consoleBorder); //set border for pane
-			centeringText(); //call centering method
-			welcomePanel.add(textPane); //add pane to panel
-		}
-		
-		//Build the panel consisting of buttons
-		public void buildButtonPanel() {
-			buttonPanel.setLayout(new FlowLayout()); //use flowLayout 
-			
-			//add components to panel
-			buttonPanel.add(continueBtn);
-			buttonPanel.add(cancelBtn);
-		}
-		
-		//method to set action command for buttons
-		private void setActionCommand() {
-			continueBtn.addActionListener(this);
-			continueBtn.setActionCommand("Continue");
-			
-			cancelBtn.addActionListener(this);
-			cancelBtn.setActionCommand("Cancel");
-		}
-		
-		// Perform action selected
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String action = e.getActionCommand();
-			//if the user chooses continue, open the BMI analyzer frame or AnalyzeGUI frame
-			if (action.equals("Continue")) {
-				@SuppressWarnings("unused")
-				LogGUI newFrame = new LogGUI("Login Page");
-				dispose(); //remove the current frame
-			}
-			//If the user chooses cancel, exit program
-			else if (action.equals("Cancel")) {
-				System.exit(0);
-			}
-		}
-		
-		//Main method
-		public static void main(String[] args) {
-			@SuppressWarnings("unused")
-			WelcomeGUI frame = new WelcomeGUI("MNS MAIL SERVICE");
-		}
+	/**
+	 * Method name: buildPanel()
+	 * Heading: public void buildPanel()
+	 * Description: to build panel consisting of JTextPane
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: builds the panel
+	 * Throws list: none
+	 */
+	public void buildPanel() {
+		textPane.setFont(font); // set font
+		textPane.setEditable(false); //set the pane uneditable
+		textPane.setBorder(consoleBorder); //set border for pane
+		centeringText(); //call centering method
+		welcomePanel.add(textPane); //add pane to panel
 	}
+		
+	
+	/**
+	 * Method name: buildButtonPanel()
+	 * Heading: public void buildButtonPanel()
+	 * Description: to build the panel consisting of buttons
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: builds button panel
+	 * Throws list: none
+	 */
+	public void buildButtonPanel() {
+		buttonPanel.setLayout(new FlowLayout()); //use flowLayout 
+		
+		//add components to panel
+		buttonPanel.add(continueBtn);
+		buttonPanel.add(cancelBtn);
+	}
+		
+	//method to set action command for buttons
+	/**
+	 * Method name: setActionCommand()
+	 * Heading: private void setActionCommand()
+	 * Description: to set action command for buttons
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: creates action commands
+	 * Throws list: none
+	 */
+	private void setActionCommand() {
+		continueBtn.addActionListener(this);
+		continueBtn.setActionCommand("Continue");
+		
+		cancelBtn.addActionListener(this);
+		cancelBtn.setActionCommand("Cancel");
+	}
+	
+	
+	/**
+	 * Method name: actionPerformed()
+	 * Heading: public void actionPerformed(ActionEvent e)
+	 * Description: to perform action selected
+	 * Parameters: ActionEvent e
+	 * Precondition: if action is continue
+	 * Postcondition: calls newFrame
+	 * Throws list: none
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String action = e.getActionCommand();
+		//if the user chooses continue, open the BMI analyzer frame or AnalyzeGUI frame
+		if (action.equals("Continue")) {
+			@SuppressWarnings("unused")
+			LogGUI newFrame = new LogGUI("Login Page");
+			dispose(); //remove the current frame
+		}
+		//If the user chooses cancel, exit program
+		else if (action.equals("Cancel")) {
+			System.exit(0);
+		}
+		}
+		
+	//Main method
+	public static void main(String[] args) {
+		@SuppressWarnings("unused")
+		WelcomeGUI frame = new WelcomeGUI("MNS MAIL SERVICE");
+	}
+}
