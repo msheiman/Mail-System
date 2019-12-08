@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -122,6 +123,8 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 			Employee employee = new Employee(firstNameTxt.getText(), lastNameTxt.getText(),
 					emailTxt.getText(), usernameTxt.getText(),passwordTxt.getText());
 			writeToFile(employee); // Add the employee information to CVS File
+			JOptionPane.showMessageDialog(employeeCreationPanel, "Successfully Created Account");
+			dispose();
 		}
 		else if(action.equals("Cancel")) {
 			dispose();

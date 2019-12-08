@@ -171,6 +171,7 @@ public class LogGUI extends JFrame implements ActionListener{
 			Authenticator check = new Authenticator(login, employeeList);
 			if (check.authenticate()) {
 				new driverGUI("Driver Page");
+				dispose();
 			} 
 			else {
 				JOptionPane.showMessageDialog(mainLoginPanel, "Invalid Username or Password!",
