@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -35,9 +34,7 @@ public class driverGUI extends JFrame implements ActionListener {
 	MailCollection bag = new MailCollection(500);
 	MailCollection bag2 = new MailCollection(500);
 	
-	private TitledBorder consoleBorder = new TitledBorder("");
-	
-	private Font font = new Font("Times new Roman", Font.BOLD, 54);
+	private Font font = new Font("Times new Roman", Font.BOLD, 40);
 	
 	
 	/**
@@ -110,7 +107,7 @@ public class driverGUI extends JFrame implements ActionListener {
 	public void centeringText() {
 		SimpleAttributeSet attrs = new SimpleAttributeSet();
         	StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
-       		StyledDocument doc=(StyledDocument) textPanel.getDocument();
+       		StyledDocument doc = (StyledDocument) textPanel.getDocument();
         	try {
 			doc.insertString(0,bag.toString(),attrs);
 		} catch (BadLocationException e) {
@@ -129,8 +126,8 @@ public class driverGUI extends JFrame implements ActionListener {
 	public void buildPanel() {
 		textPanel.setFont(font); // set font
 		textPanel.setEditable(false); //set the pane uneditable
-		textPanel.setBorder(consoleBorder); //set border for pane
-		
+		centeringText();
+	
 		driverPanel.add(textPanel); //add pane to panel
 	}
 	
@@ -144,6 +141,7 @@ public class driverGUI extends JFrame implements ActionListener {
 	public void buildButtonPanel() {
 		boolPanel.setLayout(new FlowLayout()); //use flowLayout 
 		boolPanel.add(boolLabel);
+		
 		//add components to panel
 		boolPanel.add(yesBtn);
 		boolPanel.add(noBtn);

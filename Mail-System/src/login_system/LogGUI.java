@@ -93,6 +93,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		panel.add(loginTitle);
 	}
 	
+	/**
+	 * Method name: centeringText()
+	 * Heading: public void centeringText()
+	 * Description: to set the text at the center of the pane
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: centers the text
+	 * Throws list: BadLocationexception e
+	 */
 	private void centeringText() {
 		SimpleAttributeSet attrs = new SimpleAttributeSet();
 	    StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);

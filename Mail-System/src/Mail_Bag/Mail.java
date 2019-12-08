@@ -6,7 +6,16 @@ public class Mail {
 	private double weight;
 	private String trackingNumber;
 	private boolean signature;
+	private String status;
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	/**
 	 * description: creates constructor 
 	 * parameters: none
@@ -97,13 +106,13 @@ public class Mail {
 	 * Throws list: none
 	 */
 	public String generateTrackingNumber() {
-		String tracking = "";
+		String trackingNumber = "";
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	    	Random rnd = new Random();
 		char char1 = alphabet.charAt(rnd.nextInt(alphabet.length()));
 	   	char char2 = alphabet.charAt(rnd.nextInt(alphabet.length()));
 		int number = (int) ((Math.random() * ((99999999 - 10000000) + 1)) + 10000000);
-		tracking = char1 + char2 + String.valueOf(number);
+		trackingNumber = char1 + char2 + String.valueOf(number);
 		return trackingNumber;
 	}
 	

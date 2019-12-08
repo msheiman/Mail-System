@@ -102,10 +102,19 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		welcomePanel.add(textPane); //add pane to panel
 		welcomePanel.setBackground(Color.white);
 	}
-		
+	
+	/**
+	 * Method name: buildTrackPanel
+	 * Heading: public void buildTrackPanel()
+	 * Description: build the panel consisting of field for user 
+	 * 				to enter the tracking number to track their mails
+	 * Parameters: none
+	 * Precondition: when it's called
+	 * Postcondition: panel is built
+	 * Throws list: none
+	 */
 	public void buildTrackPanel() {
 		trackingPanel.setLayout(new FlowLayout());	
-		
 		trackingPanel.add(trackingNumber);
 		trackingPanel.add(trackBtn);
 	}

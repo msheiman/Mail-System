@@ -95,6 +95,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 		buttonPanel.add(cancelBtn);
 	}
 	
+	/**
+	 * Method name: centeringText()
+	 * Heading: public void centeringText()
+	 * Description: to set the text at the center of the pane
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: centers the text
+	 * Throws list: BadLocationexception e
+	 */
 	private void centeringText() {
 		SimpleAttributeSet attrs = new SimpleAttributeSet();
 	    StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
