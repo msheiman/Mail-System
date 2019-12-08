@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -35,7 +36,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	private JTextPane textPane = new JTextPane();
 	
 	//TextField
-	private JTextField trackingNumber = new JTextField("Tracking Number", 15);
+	private JTextField trackingNumber = new JTextField(15);
 	
 	/**
 	 * Method name: Welcome()
@@ -130,7 +131,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	 */
 	public void buildButtonPanel() {
 		buttonPanel.setLayout(new FlowLayout()); //use flowLayout 
-		
 		//add components to panel
 		buttonPanel.add(loginBtn);
 		buttonPanel.add(cancelBtn);
@@ -168,9 +168,21 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
-		//if the user chooses continue, open the BMI analyzer frame or AnalyzeGUI frame
-		if (action.equals("Track")) {
 		
+		// If user chooses "Track
+		if (action.equals("Track")) {
+			if (String.valueOf(trackingNumber.getText().trim()) == null){
+				JOptionPane.showMessageDialog(trackingPanel, "Please Enter Tracking Number\nto Track Your Mail", 
+						"Error Message Box", JOptionPane.ERROR_MESSAGE );
+			}
+			else if (String.valueOf(trackingNumber.getText().trim()).length() != 10) {
+				JOptionPane.showMessageDialog(trackingPanel, "Invalid Tracking Number\nPlease Enter Again", 
+						"Error Message Box", JOptionPane.ERROR_MESSAGE );
+				trackingNumber.setText("");
+			}		
+			else {
+				
+			}
 		}
 		else if (action.equals("Log In")) {
 			@SuppressWarnings("unused")
@@ -182,7 +194,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
-		
+	
 	//Main method
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
