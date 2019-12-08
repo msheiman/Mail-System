@@ -1,15 +1,21 @@
 package login_system;
 
-//import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import Employee_System.Employee;
 import Employee_System.EmployeeList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -17,50 +23,57 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.awt.Component;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class LogGUI extends JFrame implements ActionListener{
 	
 	// TEXTFIELDs
-	private JTextField trackingNumberTextField = new JTextField();
-	private JTextField textField_1 = new JTextField();;
-	private JTextField textField_2 = new JTextField();;
-	private JTextField employeeFirstNameTextField = new JTextField();;
-	private JTextField employeeLastNameTextField = new JTextField();;
-	private JTextField employeeUsernameTextField = new JTextField();;
-	private JTextField employeePasswordTextField = new JTextField();;
-	private JTextField employeeEmailTextField = new JTextField();;
+	private JTextField usernameInput = new JTextField();
+	private JTextField textField_2 = new JTextField();
+	private JTextField employeeFirstNameTextField = new JTextField();
+	private JTextField employeeLastNameTextField = new JTextField();
+	private JTextField employeeUsernameTextField = new JTextField();
+	private JTextField employeePasswordTextField = new JTextField();
+	private JTextField employeeEmailTextField = new JTextField();
 	
 	// PANELs
+	private JPanel panel = new JPanel();
+	private JPanel buttonPanel = new JPanel();
 	private JPanel mainLoginPanel = new JPanel();
 	private JPanel employeeCreationPanel = new JPanel();
 	private JPanel employeeLoginPanel = new JPanel();
 	private JPanel rejectionPanel = new JPanel();
 	
 	// LABELs
-	private JLabel trackingNumberLabel = new JLabel("Tracking Number");
+	//private JLabel trackingNumberLabel = new JLabel("Tracking Number");
 	private JLabel employeeFirstNameLabel = new JLabel("First Name");
 	private JLabel employeeLastNameLabel = new JLabel("Last Name");
 	private JLabel employeeUsernameLabel = new JLabel("Username");
 	private JLabel employeePasswordLabel = new JLabel("Password");
 	private JLabel employeeEmailLabel = new JLabel("Email");
-	private JLabel usernameLabel = new JLabel("Username");
-	private JLabel passwordLabel = new JLabel("Password");
+	private JLabel usernameLabel = new JLabel("Username", SwingConstants.CENTER);
+	private JLabel passwordLabel = new JLabel("Password", SwingConstants.CENTER);
 	private JLabel rejectionLabel = new JLabel("Incorrect username or password. Please try again");
 	
 	// BUTTONs
-	private JButton loginButton = new JButton("Employee Login");
-	private JButton searchButton = new JButton("Search");
-	private JButton employeeSubmitButton = new JButton("Submit");
-	private JButton employeeLoginButton = new JButton("Login");
-	private JButton employeeCreationButton = new JButton("New Employee");
-	private JButton rejectionConfirmationButton = new JButton("OK");
+	private JButton createAccountBtn = new JButton("Create Account");
+	private JButton loginBtn = new JButton("Log In");
+	private JButton cancelBtn = new JButton("Cancel");
 	
-	// INSTANCE VARIABLEs
+	private JTextPane loginTitle = new JTextPane();
 	
+	//Font
+	private Font font = new Font("Calibri", Font.BOLD, 40);
+
+	private JPasswordField passwordInput = new JPasswordField();
+	
+	
+	private JOptionPane errorPane = new JOptionPane();
 	/**
 	 * CREATE LOGIN FRAME
 	 * @param title : title of the frame
@@ -70,24 +83,43 @@ public class LogGUI extends JFrame implements ActionListener{
 	 */
 	public LogGUI (String title) {
 		super(title);
-		//setBounds(100, 100, 879, 555);
-		setSize(1005,415); //set the size
+		setSize(400,200); //set the size
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default exit method
 		
+		buildPanel();
 		buildMainLoginPanel();
-		buildEmployeeLoginPanel();
-		buildEmployeeCreationPanel();
-		buildRejectionPanel();
+		buildButtonPanel();
 
-		add(mainLoginPanel);
-		add(employeeLoginPanel);
-		add(employeeCreationPanel);
-		add(rejectionPanel);
+		add(panel, BorderLayout.NORTH);
+		add(mainLoginPanel, BorderLayout.CENTER);
+		add(buttonPanel, BorderLayout.SOUTH);
+		//add(employeeLoginPanel);
+		//add(employeeCreationPanel);
+		//add(rejectionPanel);
 		
 		setActionCommand(); //call action command method
 		setVisible(true); //set frame to be visible
 	}
 	
+	public void buildPanel() {
+		loginTitle.setFont(font);
+		loginTitle.setEditable(false);
+		centeringText();
+		panel.add(loginTitle);
+	}
+	
+	private void centeringText() {
+		SimpleAttributeSet attrs = new SimpleAttributeSet();
+	    StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
+	    StyledDocument doc = (StyledDocument) loginTitle.getDocument();
+	    try {
+			doc.insertString(0,"MNS Employee",attrs);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+	        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
+	}
+
 	/**
 	 * Method name: buildMainLoginPanel
 	 * Heading: public void buildMainLoginPanel
@@ -98,141 +130,20 @@ public class LogGUI extends JFrame implements ActionListener{
 	 * Throws list: none
 	 */
 	public void buildMainLoginPanel() {
-
-		mainLoginPanel.setBounds(0, 0, 863, 516);
-		mainLoginPanel.setLayout(null);
-		mainLoginPanel.setVisible(true);
-
-		trackingNumberLabel.setBounds(10, 25, 126, 14);
-		mainLoginPanel.add(trackingNumberLabel);
-
-		trackingNumberTextField.setBounds(10, 50, 281, 20);
-		mainLoginPanel.add(trackingNumberTextField);
-		trackingNumberTextField.setColumns(10);
-		
-		
-		searchButton.setBounds(301, 49, 89, 23);
-		mainLoginPanel.add(searchButton);
-		loginButton.setBounds(727, 482, 126, 23);
-		mainLoginPanel.add(loginButton);
-	
+		mainLoginPanel.setLayout(new GridLayout(2,2));
+		mainLoginPanel.add(usernameLabel);
+		mainLoginPanel.add(usernameInput);
+		mainLoginPanel.add(passwordLabel);
+		mainLoginPanel.add(passwordInput);
 	}
 
-	/**
-	 * Method name: buildEmployeeLoginPanel
-	 * Heading: public void buildEmployeeLoginPanel
-	 * Description: build employee login panel
-	 * Parameters: none
-	 * Precondition: none
-	 * Postcondition: components added to panel
-	 * Throws list: none
-	 */
-	public void buildEmployeeLoginPanel() {
-	
-		employeeLoginPanel.setBounds(0, 0, 863, 516);
-		employeeLoginPanel.setLayout(null);
-		employeeLoginPanel.setVisible(false);
-		
-		usernameLabel.setBounds(20, 45, 100, 14);
-		employeeLoginPanel.add(usernameLabel);
-
-		textField_1.setBounds(20, 70, 200, 20);
-		employeeLoginPanel.add(textField_1);
-		textField_1.setColumns(10);	
-
-		passwordLabel.setBounds(20, 115, 100, 14);
-		employeeLoginPanel.add(passwordLabel);
-
-		textField_2.setBounds(20, 140, 200, 20);
-		employeeLoginPanel.add(textField_2);
-		textField_2.setColumns(10);
-		
-		employeeLoginButton.setBounds(131, 171, 89, 23);
-		employeeLoginPanel.add(employeeLoginButton);
-		
-		employeeCreationButton.setBounds(713, 482, 140, 23);
-		employeeLoginPanel.add(employeeCreationButton);
+	public void buildButtonPanel() {
+		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.add(createAccountBtn);
+		buttonPanel.add(loginBtn);
+		buttonPanel.add(cancelBtn);
 	}
 	
-	/**
-	 * Method name: buildEmployeeCreationPanel
-	 * Heading: public void buildEmployeeCreationPanel
-	 * Description: build Employee Creation panel where new employee can create new account
-	 * Parameters: none
-	 * Precondition: none
-	 * Postcondition: panel with components added
-	 * Throws list: none
-	 */
-	public void buildEmployeeCreationPanel() {
-		
-		employeeCreationPanel.setBounds(0, 0, 863, 516);
-		employeeCreationPanel.setLayout(null);
-		employeeCreationPanel.setVisible(false);
-		
-		
-		employeeFirstNameLabel.setBounds(10, 11, 86, 14);
-		employeeCreationPanel.add(employeeFirstNameLabel);
-		
-		
-		employeeFirstNameTextField.setBounds(10, 36, 120, 20);
-		employeeCreationPanel.add(employeeFirstNameTextField);
-		employeeFirstNameTextField.setColumns(10);
-	
-		employeeLastNameLabel.setBounds(10, 67, 86, 14);
-		employeeCreationPanel.add(employeeLastNameLabel);
-
-		employeeLastNameTextField.setBounds(10, 92, 120, 20);
-		employeeCreationPanel.add(employeeLastNameTextField);
-		employeeLastNameTextField.setColumns(10);
-		
-		employeeUsernameLabel.setBounds(10, 123, 86, 14);
-		employeeCreationPanel.add(employeeUsernameLabel);
-
-		employeeUsernameTextField.setBounds(10, 148, 120, 20);
-		employeeCreationPanel.add(employeeUsernameTextField);
-		employeeUsernameTextField.setColumns(10);
-
-		employeePasswordLabel.setBounds(10, 179, 86, 14);
-		employeeCreationPanel.add(employeePasswordLabel);
-
-		employeePasswordTextField.setBounds(10, 204, 120, 20);
-		employeeCreationPanel.add(employeePasswordTextField);
-		employeePasswordTextField.setColumns(10);
-
-		employeeEmailLabel.setBounds(10, 235, 86, 14);
-		employeeCreationPanel.add(employeeEmailLabel);
-
-		employeeEmailTextField.setBounds(10, 260, 120, 20);
-		employeeCreationPanel.add(employeeEmailTextField);
-		employeeEmailTextField.setColumns(10);
-
-		employeeSubmitButton.setBounds(10, 291, 89, 23);
-		employeeCreationPanel.add(employeeSubmitButton);
-	}
-	
-	/**
-	 * Method name: buildRejectionPanel
-	 * Heading: public void buildRejectionPanel
-	 * Description: build rejection panel where it displays the error message to user
-	 * 				when they entered wrong credentials of account
-	 * Parameters: none
-	 * Precondition: none
-	 * Postcondition: panel with components added
-	 * Throws list: none
-	 */
-	public void buildRejectionPanel() {
-		
-		rejectionPanel.setBounds(0, 0, 863, 516);
-		rejectionPanel.setLayout(null);
-		rejectionPanel.setVisible(false);
-
-		rejectionLabel.setBounds(310, 11, 243, 14);
-		rejectionPanel.add(rejectionLabel);
-
-		rejectionConfirmationButton.setBounds(374, 34, 89, 23);
-		rejectionPanel.add(rejectionConfirmationButton);
-	}
-
 	/**
 	 * Method name: setActionCommand
 	 * Heading: public void setActionCommand
@@ -243,24 +154,14 @@ public class LogGUI extends JFrame implements ActionListener{
 	 * Throws list: none
 	 */
 	public void setActionCommand() {
+		createAccountBtn.addActionListener(this);
+		createAccountBtn.setActionCommand("Create Account");
 		
-		loginButton.addActionListener(this);
-		loginButton.setActionCommand("Employee Login");
+		loginBtn.addActionListener(this);
+		loginBtn.setActionCommand("Log In");
 		
-		searchButton.addActionListener(this);
-		searchButton.setActionCommand("Search");
-
-		employeeSubmitButton.addActionListener(this);
-		employeeSubmitButton.setActionCommand("Submit");
-		
-		employeeLoginButton.addActionListener(this);
-		employeeLoginButton.setActionCommand("Login");
-		
-		employeeCreationButton.addActionListener(this);
-		employeeCreationButton.setActionCommand("New Employee");
-		
-		rejectionConfirmationButton.addActionListener(this);
-		rejectionConfirmationButton.setActionCommand("OK");
+		cancelBtn.addActionListener(this);
+		cancelBtn.setActionCommand("Cancel");
 	}
 	
 	/**
@@ -274,21 +175,21 @@ public class LogGUI extends JFrame implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
-		if (action.equals("Search")){
-			@SuppressWarnings("unused")
-			String trackingNumber = trackingNumberTextField.getText();
-		}
-		else if (action.equals("Employee Login")) {
+
+		if (action.equals("Employee Login")) {
 			employeeLoginPanel.setVisible(true);
 		}
-		else if (action.equals("Login")) {	
-			Token login = new Token(textField_1.getText(), textField_2.getText());
+		else if (action.equals("Log In")) {	
+			String passwordEntered = new String (passwordInput.getPassword());
+			Token login = new Token(usernameInput.getText(), passwordEntered);
 			EmployeeList employeeList = readCSV("Mail-System/src/Employee_System/EmployeeSystem.csv");
 			Authenticator check = new Authenticator(login, employeeList);
 			if (check.authenticate()) {
 				driverGUI newDriver = new driverGUI("Driver Page");
-			} else {
-				rejectionPanel.setVisible(true);
+			} 
+			else {
+				JOptionPane.showMessageDialog(mainLoginPanel, "Invalid Username or Password!",
+						"Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		else if (action.equals("New Employee")) {
