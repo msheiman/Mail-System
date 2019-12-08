@@ -34,31 +34,16 @@ public class LogGUI extends JFrame implements ActionListener{
 	
 	// TEXTFIELDs
 	private JTextField usernameInput = new JTextField();
-	private JTextField textField_2 = new JTextField();
-	private JTextField employeeFirstNameTextField = new JTextField();
-	private JTextField employeeLastNameTextField = new JTextField();
-	private JTextField employeeUsernameTextField = new JTextField();
-	private JTextField employeePasswordTextField = new JTextField();
-	private JTextField employeeEmailTextField = new JTextField();
+	
 	
 	// PANELs
 	private JPanel panel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
 	private JPanel mainLoginPanel = new JPanel();
-	private JPanel employeeCreationPanel = new JPanel();
-	private JPanel employeeLoginPanel = new JPanel();
-	private JPanel rejectionPanel = new JPanel();
 	
 	// LABELs
-	//private JLabel trackingNumberLabel = new JLabel("Tracking Number");
-	private JLabel employeeFirstNameLabel = new JLabel("First Name");
-	private JLabel employeeLastNameLabel = new JLabel("Last Name");
-	private JLabel employeeUsernameLabel = new JLabel("Username");
-	private JLabel employeePasswordLabel = new JLabel("Password");
-	private JLabel employeeEmailLabel = new JLabel("Email");
 	private JLabel usernameLabel = new JLabel("Username", SwingConstants.CENTER);
 	private JLabel passwordLabel = new JLabel("Password", SwingConstants.CENTER);
-	private JLabel rejectionLabel = new JLabel("Incorrect username or password. Please try again");
 	
 	// BUTTONs
 	private JButton createAccountBtn = new JButton("Create Account");
@@ -67,13 +52,13 @@ public class LogGUI extends JFrame implements ActionListener{
 	
 	private JTextPane loginTitle = new JTextPane();
 	
-	//Font
+	// FONT
 	private Font font = new Font("Calibri", Font.BOLD, 40);
 
+	// PASSWORD FIELD
 	private JPasswordField passwordInput = new JPasswordField();
 	
 	
-	private JOptionPane errorPane = new JOptionPane();
 	/**
 	 * CREATE LOGIN FRAME
 	 * @param title : title of the frame
@@ -176,8 +161,8 @@ public class LogGUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 
-		if (action.equals("Employee Login")) {
-			employeeLoginPanel.setVisible(true);
+		if (action.equals("Create Account")) {
+			new CreateAccountGUI("New Employee");
 		}
 		else if (action.equals("Log In")) {	
 			String passwordEntered = new String (passwordInput.getPassword());
@@ -185,29 +170,18 @@ public class LogGUI extends JFrame implements ActionListener{
 			EmployeeList employeeList = readCSV("Mail-System/src/Employee_System/EmployeeSystem.csv");
 			Authenticator check = new Authenticator(login, employeeList);
 			if (check.authenticate()) {
-				driverGUI newDriver = new driverGUI("Driver Page");
+				new driverGUI("Driver Page");
 			} 
 			else {
 				JOptionPane.showMessageDialog(mainLoginPanel, "Invalid Username or Password!",
 						"Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		else if (action.equals("New Employee")) {
-			employeeCreationPanel.setVisible(true);			
+		else if (action.equals("Cancel")) {
+			dispose();
 		}
-		else if (action.equals("Submit")) {
-			@SuppressWarnings("unused")
-			Employee employee = new Employee(employeeFirstNameTextField.getText(), employeeLastNameTextField.getText(),
-					employeeEmailTextField.getText(), employeeUsernameTextField.getText(),
-					employeePasswordTextField.getText());
-			writeToFile(employee); // Add the employee information to CVS File
-			employeeCreationPanel.setVisible(false);
-		}
-		else if (action.equals("OK")) {
-			rejectionPanel.setVisible(false);
-		}	
 	}
-
+	
 	/**
 	 * Method name: creat()
 	 * Heading: public void creatFile 
@@ -217,48 +191,11 @@ public class LogGUI extends JFrame implements ActionListener{
 	 * Postcondition: creates fileIn
 	 * Throws list: IOException e
 	 */
+	@SuppressWarnings("resource")
 	public void creatFile() {
-		@SuppressWarnings("unused")
-		BufferedWriter fileIn = null;
 		try {
-			fileIn = new BufferedWriter(new FileWriter("Mail-System/src/Employee_System/EmployeeSystem.csv", true)); //create new file
+			new BufferedWriter(new FileWriter("Mail-System/src/Employee_System/EmployeeSystem.csv", true));
 		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Method name: writeToFile(Employee employee)
-	 * Heading: public void writeToFile(Employee employee) 
-	 * Description: to write items in arrayList in file
-	 * Parameters: Employee employee
-	 * Precondition: the tail is not null
-	 * Postcondition: appends items to file
-	 * Throws list: IOException e
-	 		Exception e
-	 */
-	public void writeToFile(Employee employee) {
-		FileWriter fileIn = null; //declare a file
-		try {
-			fileIn = new FileWriter("Mail-System/src/Employee_System/EmployeeSystem.csv", true); //create new file
-			
-			//Write each item in arrayList into file
-			//Append item to file and separate them by comma delimiter
-			fileIn.append(String.valueOf(employee.getFirstName()));
-			fileIn.append(",");
-			fileIn.append(String.valueOf(employee.getLastName()));
-			fileIn.append(",");
-			fileIn.append(employee.getEmail());
-			fileIn.append(",");
-			fileIn.append(employee.getUser());
-			fileIn.append(",");
-			fileIn.append(employee.getPassword());
-			fileIn.append("\n");
-			
-			fileIn.close(); //Close file
-		} catch (IOException e) {
-			e.printStackTrace();	
-		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -277,6 +214,7 @@ public class LogGUI extends JFrame implements ActionListener{
 		System.out.print(fileName);
 		EmployeeList list = new EmployeeList();
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			String line = br.readLine(); //read every line
 			while(line != null) {

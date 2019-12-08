@@ -164,6 +164,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		}
 		else if (action.equals("Log In")) {
+			@SuppressWarnings("unused")
 			LogGUI newFrame = new LogGUI("Employee Login Page");
 			dispose(); //remove the current frame
 		}
@@ -171,7 +172,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		else if (action.equals("Cancel")) {
 			System.exit(0);
 		}
-		}
+	}
 		
 	//Main method
 	public static void main(String[] args) {
