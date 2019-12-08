@@ -151,7 +151,7 @@ public class EmployeeList{
 	 */
 	public boolean checkPassword(String password) {
 		if (password == null || password.trim() ==  "") {
-			throw new IllegalArgumentException("Illegal Username\n");
+			throw new IllegalArgumentException("Illegal Password\n");
 		}
 		
 		EmployeeNode cursor = head;
