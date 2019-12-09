@@ -14,7 +14,7 @@ public class Token {
 	 * Postcondition: creates the constructor
 	 * Throws list: N/A
 	 */
-	Token(String username, String password) {
+	public Token(String username, String password) {
 		this.user = username;
 		this.pword = password;
 	}

@@ -113,7 +113,7 @@ public class EmployeeList{
 	 * Throws list: IllegalArgumentException("Illegal Username")
 	 		NullPointerException ("Employee List is empty.")
 	 */
-	public boolean checkUsername(String username) {
+	public boolean check(String username, String password) {
 		if (username == null) {
 			throw new IllegalArgumentException("Illegal Username\n");
 		}
@@ -127,47 +127,12 @@ public class EmployeeList{
 			// other wise, compare the id of data of linked list and the argument
 			// from the head to the node before the tail
 			while (cursor != null) {
-				if (cursor.getData().getUser().equals(username)) {
+				if (cursor.getData().getUser().equals(username) && cursor.getData().getPassword().equals(password)) {
 					// if the target is found, change the flag to true
 					// and break the loop
 					flag = true;
 					break;
-				}
-				// move to next link if current node is not target node
-				cursor = cursor.getLink();
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * Method name: checkPassword()
-	 * Heading: public boolean checkPassword(String password) 
-	 * Description: to check password to see if correct
-	 * Parameters: String password
-	 * Precondition: if getPassword equals password is false
-	 * Postcondition: return true or false
-	 * Throws list: N/A
-	 */
-	public boolean checkPassword(String password) {
-		if (password == null || password.trim() ==  "") {
-			throw new IllegalArgumentException("Illegal Password\n");
-		}
-		
-		EmployeeNode cursor = head;
-		boolean flag = false;
-		
-		if (cursor == null)
-			throw new NullPointerException ("Employee List is empty.");
-		else {
-			// other wise, compare the id of data of linked list and the argument
-			// from the head to the node before the tail
-			while (cursor != null) {
-				if (cursor.getData().getPassword().equals(password)) {
-					// if the target is found, change the flag to true
-					// and break the loop
-					flag = true;
-					break;
+					
 				}
 				// move to next link if current node is not target node
 				cursor = cursor.getLink();

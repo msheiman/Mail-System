@@ -30,10 +30,9 @@ public class Authenticator {
 	 * Throws list: N/A
 	 */
 	public boolean authenticate() {
-		boolean userCheck = list.checkUsername(t.getUser());
-		boolean passCheck = list.checkPassword(t.getPword());
-
-		if (userCheck == true && passCheck == true) {
+		
+		boolean check = list.check(t.getUser(), t.getPword());
+		if (check == true) {
 			return true;
 		}
 		return false;
