@@ -5,7 +5,8 @@ import java.util.Comparator;
 import Mail_Bag.MailCollection;
 
 public class Customer {
-	private String name;
+	private String firstName;
+	private String lastName;
 	private int houseNum;
 	private String street;
 	private String city;
@@ -20,9 +21,10 @@ public class Customer {
 	 * postcondition: creates constructor 
 	 * throws: none
 	 */
-	public Customer(String name, int houseNum, String street, String city, String state, int zipcode, MailCollection mailbox) {
+	public Customer(String firstName, String lastName, int houseNum, String street, String city, String state, int zipcode, MailCollection mailbox) {
 		super();
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.houseNum = houseNum;
 		this.city = city;
 		this.state = state;
@@ -30,26 +32,17 @@ public class Customer {
 		this.mailbox = mailbox;
 	}
 
-	/**
-	 * description: returns name 
-	 * parameters: none
-	 * precondition: is called 
-	 * postcondition: returns name 
-	 * throws: none
-	 */
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-
-	/**
-	 * description: set name 
-	 * parameters: String name
-	 * precondition: is called 
-	 * postcondition: set name 
-	 * throws: none
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	/**
@@ -193,7 +186,7 @@ public class Customer {
 	 */
 	@Override
 	public String toString() {
-		return name + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
+		return firstName + " " + lastName + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
 	}
 }
 	/**

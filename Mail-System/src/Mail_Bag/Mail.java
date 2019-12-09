@@ -8,14 +8,6 @@ public class Mail {
 	private boolean signature;
 	private String status;
 	
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	/**
 	 * description: creates constructor 
 	 * parameters: none
@@ -23,11 +15,18 @@ public class Mail {
 	 * postcondition: creates constructor 
 	 * throws: none
 	 */
-	public Mail(double weight, boolean signature) {
-		super();
+	public Mail(double weight, String status) {
 		this.weight = weight;
 		this.trackingNumber = generateTrackingNumber();
-		this.signature = signature;
+		this.signature = false;
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	/**

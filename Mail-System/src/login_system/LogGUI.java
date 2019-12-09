@@ -179,7 +179,7 @@ public class LogGUI extends JFrame implements ActionListener{
 			EmployeeList employeeList = readCSV("Mail-System/src/Employee_System/EmployeeSystem.csv");
 			Authenticator check = new Authenticator(login, employeeList);
 			if (check.authenticate()) {
-				new driverGUI("Driver Page");
+				new EmployeeGUI("Employee Function");
 				dispose();
 			} 
 			else {

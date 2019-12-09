@@ -16,6 +16,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import Mail_Bag.Mail;
 import Mail_Bag.MailCollection;
 
 @SuppressWarnings("serial")
@@ -91,7 +92,7 @@ public class driverGUI extends JFrame implements ActionListener {
 		}
 		//If the user chooses no, push item to bag2 and removes from bag
 		else if (action.equals("No")) {
-			String temp = bag.pop();
+			Mail temp = bag.pop();
 			bag2.push(temp);
 		}
 		

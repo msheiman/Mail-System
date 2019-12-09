@@ -1,7 +1,7 @@
 package Mail_Bag;
 
 public class MailCollection {
-	private String[] stack;
+	private Mail[] stack;
 	private int count;
 	private final int FIRST_INDEX = 0;
 
@@ -13,7 +13,7 @@ public class MailCollection {
 	 * throws: none
 	 */
 	public MailCollection(int capacity) {
-		this.stack = new String[capacity];
+		this.stack = new Mail[capacity];
 		this.count = 0;
 	}
 
@@ -24,11 +24,11 @@ public class MailCollection {
 	 * postcondition: add element, increase count 
 	 * throws: none
 	 */
-	public void push(String element) {
+	public void push(Mail mail) {
 		if (count == stack.length)
 			ensureCapacity();
 
-		stack[count] = element;
+		stack[count] = mail;
 		count++;
 	}
 
@@ -40,7 +40,7 @@ public class MailCollection {
 	 * throws: none
 	 */
 	private void ensureCapacity() {
-		String[] bArray = new String[1 + (stack.length * 2)];
+		Mail[] bArray = new Mail[1 + (stack.length * 2)];
 		System.arraycopy(stack, FIRST_INDEX, bArray, FIRST_INDEX, stack.length);
 		stack = bArray;
 	}
@@ -75,8 +75,8 @@ public class MailCollection {
 	 * postcondition: returns element 
 	 * throws: none
 	 */
-	public String pop() {
-		String element = stack[--count];
+	public Mail pop() {
+		Mail element = stack[--count];
 
 		return element;
 	}
@@ -88,7 +88,7 @@ public class MailCollection {
 	 * postcondition: returns element at index 
 	 * throws: none
 	 */
-	public String mailCheck(int i) {
+	public Mail mailCheck(int i) {
 		return stack[i];
 	}
 
@@ -99,7 +99,7 @@ public class MailCollection {
 	 * postcondition: returns stack 
 	 * throws: StackOverflowError("Stack is empty")
 	 */
-	public String peek() {
+	public Mail peek() {
 		if (isEmpty())
 			throw new StackOverflowError("Stack is Empty");
 
