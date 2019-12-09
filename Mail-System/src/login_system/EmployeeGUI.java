@@ -69,6 +69,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JButton resetBtn = new JButton("Reset");
 	private JButton cancelBtn = new JButton("Cancel");
 	
+	/**
+	 * Method name: EmployeeGUI()
+	 * Heading: public EmployeeGUI(String title)
+	 * Description: to create the frame of the GUI
+	 * Parameters: String title
+	 * Precondition: the frame is called
+	 * Postcondition: creates the frame
+	 * Throws list: N/A
+	 */
 	public EmployeeGUI(String title) {
 		super(title);
 		setSize(600,400); //set the size
@@ -84,6 +93,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		setVisible(true); //set frame to be visible
 	}
 
+	/**
+	 * Method name: buildInfoPanel()
+	 * Heading: public void buildInfoPanel()
+	 * Description: to create the info panel of the GUI
+	 * Parameters: none
+	 * Precondition: the info panel is called
+	 * Postcondition: creates the panel
+	 * Throws list: N/A
+	 */
 	public void buildInfoPanel() {
 		infoPanel.setLayout(new GridLayout(8,4));
 		infoPanel.setBorder(addBorder);
@@ -128,6 +146,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		infoPanel.add(new JLabel());
 	}
 	
+	/**
+	 * Method name: buildInfoPanel()
+	 * Heading: public void buildInfoPanel()
+	 * Description: to create the info panel of the GUI
+	 * Parameters: none
+	 * Precondition: the info panel is called
+	 * Postcondition: creates the panel
+	 * Throws list: N/A
+	 */
 	public void buildButtonPanel() {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(addBtn);
@@ -136,6 +163,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		buttonPanel.add(cancelBtn);
 	}
 	
+	/**
+	 * Method name: setActionCommand()
+	 * Heading: private void setActionCommand()
+	 * Description: to set action command for buttons
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: creates action commands
+	 * Throws list: none
+	 */
 	private void setActionCommand() {
 		addBtn.addActionListener(this);
 		addBtn.setActionCommand("Add");
@@ -150,6 +186,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		cancelBtn.setActionCommand("Cancel");
 	}
 	
+	/**
+	 * Method name: actionPerformed()
+	 * Heading: public void actionPerformed(ActionEvent e)
+	 * Description: to perform action selected
+	 * Parameters: ActionEvent e
+	 * Precondition: if action is continue
+	 * Postcondition: calls newFrame
+	 * Throws list: none
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -198,6 +243,15 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	}
 	
 	//Method reads every line in file to arraylist
+	/**
+	 * Method name: readCSV()
+	 * Heading: public static ArrayList<Mail> readCSV(String fileName)
+	 * Description: to create an arrayList of the mail
+	 * Parameters: none
+	 * Precondition: read the filee
+	 * Postcondition: returns mails
+	 * Throws list: IOException e
+	 */
 	private static ArrayList<Mail> readCSV(String fileName){
 		ArrayList<Mail> mails = new ArrayList<>();
 		try {
@@ -215,25 +269,41 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		return mails;	
 	}
 		
-		//Method creates Product object by taking every item 
-		//in arraylist to assign to intance variables
-		private static Mail createMail(String[] data) {
-			double weight = Double.parseDouble(data[0]);
-			String trackingNumber = data[1];
-			String status = data[2];
-			String first = data [3];
-			String last = data[4];
-			int houseNum = Integer.parseInt(data[5]);
-			String street = data[6];
-			String city = data[7];
-			String state = data[8];
-			int zip = Integer.parseInt(data[9]);
-			Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
+	/**
+	 * Method name: createMail()
+	 * Heading: private static Mail createMail
+	 * Description: to creates Product object by taking every item
+	 * Parameters: String[] data
+	 * Precondition: is called
+	 * Postcondition: returns new Mail(weight, trackingNumber, status, customer)
+	 * Throws list: N/A
+	 */
+	private static Mail createMail(String[] data) {
+		double weight = Double.parseDouble(data[0]);
+		String trackingNumber = data[1];
+		String status = data[2];
+		String first = data [3];
+		String last = data[4];
+		int houseNum = Integer.parseInt(data[5]);
+		String street = data[6];
+		String city = data[7];
+		String state = data[8];
+		int zip = Integer.parseInt(data[9]);
+		Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
 			
-			return new Mail (weight, trackingNumber, status, customer);
-		}
+		return new Mail (weight, trackingNumber, status, customer);
+	}
 		
-		//Method writes sorted arrayList to a file
+	/**
+	 * Method name: writeCSV()
+	 * Heading: public void writeCSV(Mail m)
+	 * Description: to writes sorted arrayList to a file
+	 * Parameters: Mail
+	 * Precondition: attempts to read file
+	 * Postcondition: appends items to file
+	 * Throws list: Exception e
+	 		IOException e
+	 */
 	public void writeCSV(Mail m) {
 		BufferedWriter fileIn = null; //declare a file
 		try {
