@@ -6,6 +6,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,6 +21,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import Mail_Bag.Customer;
+import Mail_Bag.Mail;
 
 @SuppressWarnings("serial")
 public class WelcomeGUI extends JFrame implements ActionListener {
@@ -181,7 +189,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 				trackingNumber.setText("");
 			}		
 			else {
-				trackingNumber.getText().trim();
+				String track = trackingNumber.getText().trim();
+				ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
 			}
 		}
 		else if (action.equals("Log In")) {
@@ -194,6 +203,45 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
+	
+	
+	//Method reads every line in file to arraylist
+	private static ArrayList<Mail> readCSV(String fileName){
+		ArrayList<Mail> mails = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String line = br.readLine(); //read every line
+			while(line != null) {
+				String[] attributes = line.split(","); //remove delimiter
+				Mail mail = createMail(attributes); //create a Product object
+				mails.add(mail); //add item to arraylist
+				line = br.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mails;	
+	}
+		
+		//Method creates Product object by taking every item 
+		//in arraylist to assign to intance variables
+		private static Mail createMail(String[] data) {
+			double weight = Double.parseDouble(data[0]);
+			String trackingNumber = data[1];
+			String status = data[2];
+			String first = data [3];
+			String last = data[4];
+			int houseNum = Integer.parseInt(data[5]);
+			String street = data[6];
+			String city = data[7];
+			String state = data[8];
+			int zip = Integer.parseInt(data[9]);
+			Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
+			
+			return new Mail (weight, trackingNumber, status, customer);
+		}
+		
+
 	
 	//Main method
 	public static void main(String[] args) {

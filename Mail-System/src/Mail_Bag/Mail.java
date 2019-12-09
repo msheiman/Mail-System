@@ -1,12 +1,10 @@
 package Mail_Bag;
 
-import java.util.Comparator;
 import java.util.Random;
 
 public class Mail {
 	private double weight;
 	private String trackingNumber;
-	private boolean signature;
 	private String status;
 	private Customer customer;
 	
@@ -28,11 +26,17 @@ public class Mail {
 	public Mail(double weight, String status, Customer customer) {
 		this.weight = weight;
 		this.trackingNumber = generateTrackingNumber();
-		this.signature = false;
 		this.status = status;
 		this.customer = customer;
 	}
 	
+	public Mail(double weight, String trackingNumber, String status, Customer customer) {
+		this.weight = weight;
+		this.trackingNumber = trackingNumber;
+		this.status = status;
+		this.customer = customer;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -83,29 +87,7 @@ public class Mail {
 	public void setTrackingNumber(String trackingNumber) {
 		this.trackingNumber = trackingNumber;
 	}
-	
-	/**
-	 * description: returns signature 
-	 * parameters: none
-	 * precondition: is called 
-	 * postcondition: sets signature 
-	 * throws: none
-	 */
-	public boolean isSignature() {
-		return signature;
-	}
-	
-	/**
-	 * description: sets boolean signature 
-	 * parameters: none
-	 * precondition: is called 
-	 * postcondition: sets boolean signature
-	 * throws: none
-	 */
-	public void setSignature(boolean signature) {
-		this.signature = signature;
-	}
-	
+
 	/**
 	 * Method name: generateTrackingNumber
 	 * Heading: public String generateTrackingNumber()

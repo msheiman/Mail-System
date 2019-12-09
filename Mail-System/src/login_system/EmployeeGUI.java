@@ -5,6 +5,11 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,9 +68,6 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JButton routeBtn = new JButton("Generate List");
 	private JButton resetBtn = new JButton("Reset");
 	private JButton cancelBtn = new JButton("Cancel");
-	
-	private ArrayList <Mail> list = new ArrayList <> ();
-	private Customer customer1;
 	
 	public EmployeeGUI(String title) {
 		super(title);
@@ -154,12 +156,12 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		String action = e.getActionCommand();
 		
 		if(action.equals("Add")) {
-			customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
+			Customer customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
 					Integer.valueOf(houseNumberTxt.getText().trim()), streetTxt.getText().trim(), 
 					cityTxt.getText().trim(),stateTxt.getText().toUpperCase().trim(), 
 					Integer.valueOf(zipTxt.getText().trim()));
 			Mail mail1 = new Mail(Double.valueOf(weightTxt.getText()), String.valueOf(statusBox.getSelectedItem()), customer1);
-			list.add(mail1);
+			writeCSV(mail1);
 			firstNameTxt.setText("");
 			lastNameTxt.setText("");
 			houseNumberTxt.setText("");
@@ -170,11 +172,11 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			weightTxt.setText(""); 
 		}
 		else if (action.equals("Generate List")) {
+			ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
 			if (list.isEmpty()) {
 				JOptionPane.showMessageDialog(infoPanel, "List is Empty!","Warning", JOptionPane.WARNING_MESSAGE);
 			}
 			else {
-			
 				Collections.sort(list, new SortByZipcode());
 				Collections.sort(list, new SortByHouseNumber());
 			}
@@ -192,6 +194,78 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		else if (action.equals("Cancel")) {
 			dispose();
 		}
-		
 	}
+	
+	//Method reads every line in file to arraylist
+	private static ArrayList<Mail> readCSV(String fileName){
+		ArrayList<Mail> mails = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String line = br.readLine(); //read every line
+			while(line != null) {
+				String[] attributes = line.split(","); //remove delimiter
+				Mail mail = createMail(attributes); //create a Product object
+				mails.add(mail); //add item to arraylist
+				line = br.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mails;	
+	}
+		
+		//Method creates Product object by taking every item 
+		//in arraylist to assign to intance variables
+		private static Mail createMail(String[] data) {
+			double weight = Double.parseDouble(data[0]);
+			String trackingNumber = data[1];
+			String status = data[2];
+			String first = data [3];
+			String last = data[4];
+			int houseNum = Integer.parseInt(data[5]);
+			String street = data[6];
+			String city = data[7];
+			String state = data[8];
+			int zip = Integer.parseInt(data[9]);
+			Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
+			
+			return new Mail (weight, trackingNumber, status, customer);
+		}
+		
+		//Method writes sorted arrayList to a file
+	public void writeCSV(Mail m) {
+		BufferedWriter fileIn = null; //declare a file
+		try {
+			fileIn = new BufferedWriter( new FileWriter("Mail-System/src/Mail_Bag/MailList.csv", true)); //create new file
+				//Write each item in arrayList into file
+				
+			fileIn.append(String.valueOf(m.getWeight()));
+			fileIn.append(",");
+			fileIn.append(m.getTrackingNumber());
+			fileIn.append(",");
+			fileIn.append(m.getStatus());
+			fileIn.append(",");
+			fileIn.append(m.getCustomer().getFirstName());
+			fileIn.append(",");
+			fileIn.append(m.getCustomer().getLastName());
+			fileIn.append(",");
+			fileIn.append(String.valueOf(m.getCustomer().getHouseNum()));
+			fileIn.append(",");
+			fileIn.append(m.getCustomer().getStreet());
+			fileIn.append(",");
+			fileIn.append(m.getCustomer().getCity());
+			fileIn.append(",");
+			fileIn.append(m.getCustomer().getState());
+			fileIn.append(",");
+			fileIn.append(String.valueOf(m.getCustomer().getZipcode()));
+			fileIn.append("\n");
+			
+			fileIn.close(); //Close file
+		} catch (IOException e) {
+			e.printStackTrace();	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
 }
