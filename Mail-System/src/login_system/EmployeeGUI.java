@@ -162,6 +162,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 					Integer.valueOf(zipTxt.getText().trim()));
 			Mail mail1 = new Mail(Double.valueOf(weightTxt.getText()), String.valueOf(statusBox.getSelectedItem()), customer1);
 			writeCSV(mail1);
+			
 			firstNameTxt.setText("");
 			lastNameTxt.setText("");
 			houseNumberTxt.setText("");

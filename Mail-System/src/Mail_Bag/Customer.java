@@ -24,6 +24,7 @@ public class Customer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.houseNum = houseNum;
+		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
@@ -34,6 +35,7 @@ public class Customer {
 		this.firstName = null;
 		this.lastName = null;
 		this.houseNum = 0;
+		this.street = null;
 		this.city = null;
 		this.state = null;
 		this.zipcode = 0;

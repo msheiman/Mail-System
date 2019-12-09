@@ -78,9 +78,6 @@ public class LogGUI extends JFrame implements ActionListener{
 		add(panel, BorderLayout.NORTH);
 		add(mainLoginPanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
-		//add(employeeLoginPanel);
-		//add(employeeCreationPanel);
-		//add(rejectionPanel);
 		
 		setActionCommand(); //call action command method
 		setVisible(true); //set frame to be visible
@@ -220,8 +217,6 @@ public class LogGUI extends JFrame implements ActionListener{
 	 * Throws list: IOException e
 	 */
 	private static EmployeeList readCSV(String fileName){
-		
-		System.out.print(fileName);
 		EmployeeList list = new EmployeeList();
 		try {
 			@SuppressWarnings("resource")

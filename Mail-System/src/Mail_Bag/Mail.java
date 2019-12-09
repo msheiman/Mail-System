@@ -99,13 +99,9 @@ public class Mail {
 	 */
 	public String generateTrackingNumber() {
 		String trackingNumber = "";
-		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	    	Random rnd = new Random();
-		char char1 = alphabet.charAt(rnd.nextInt(alphabet.length()));
-	   	char char2 = alphabet.charAt(rnd.nextInt(alphabet.length()));
 		int number = (int) ((Math.random() * ((99999999 - 10000000) + 1)) + 10000000);
-		trackingNumber = char1 + char2 + String.valueOf(number);
-		return trackingNumber;
+		trackingNumber = "MS" + String.valueOf(number);
+		return trackingNumber.toUpperCase();
 	}
 
 	/**

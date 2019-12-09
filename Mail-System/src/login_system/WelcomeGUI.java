@@ -179,6 +179,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		// If user chooses "Track
 		if (action.equals("Track")) {
+			char char1 = String.valueOf(trackingNumber.getText().trim()).charAt(0);
+			char char2 = String.valueOf(trackingNumber.getText().trim()).charAt(0);
 			if (String.valueOf(trackingNumber.getText().trim()) == null){
 				JOptionPane.showMessageDialog(trackingPanel, "Please Enter Tracking Number\nto Track Your Mail", 
 						"Error Message Box", JOptionPane.ERROR_MESSAGE );
@@ -187,7 +189,12 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(trackingPanel, "Invalid Tracking Number\nPlease Enter Again", 
 						"Error Message Box", JOptionPane.ERROR_MESSAGE );
 				trackingNumber.setText("");
-			}		
+			}
+			else if(char1!='M' || char2!='S') {
+				JOptionPane.showMessageDialog(trackingPanel, "Invalid Tracking Number\nPlease Enter Again", 
+						"Error Message Box", JOptionPane.ERROR_MESSAGE );
+				trackingNumber.setText("");
+			}
 			else {
 				String track = trackingNumber.getText().trim();
 				ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
