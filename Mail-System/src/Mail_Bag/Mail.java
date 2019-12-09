@@ -113,7 +113,7 @@ public class Mail {
 	 */
 	@Override
 	public String toString() {
-		String info = customer.toString() + String.format("%-6s%-12s%-10s",
+		String info = customer.toString() + String.format("%-12s%-18s%-15s",
 				getWeight(), getTrackingNumber(), getStatus());
 		return info;
 	}

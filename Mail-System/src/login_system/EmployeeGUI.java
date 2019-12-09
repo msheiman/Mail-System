@@ -34,8 +34,6 @@ import Mail_Bag.SortByZipcode;
 public class EmployeeGUI extends JFrame implements ActionListener {
 	
 	private TitledBorder addBorder = new TitledBorder("Add New Mail");
-	private TitledBorder editBorder = new TitledBorder("Edit Mail");
-	
 	private JLabel customerInfoLbl = new JLabel("Customer Information", SwingConstants.LEFT);
 	private JLabel firstNameLbl = new JLabel("First Name", SwingConstants.CENTER);
 	private JLabel lastNameLbl = new JLabel("Last Name", SwingConstants.CENTER);
@@ -68,6 +66,8 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JButton routeBtn = new JButton("Generate List");
 	private JButton resetBtn = new JButton("Reset");
 	private JButton cancelBtn = new JButton("Cancel");
+	
+	static ArrayList<Mail> sortedList = new ArrayList<>();
 	
 	/**
 	 * Method name: EmployeeGUI()
@@ -225,6 +225,8 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			else {
 				Collections.sort(list, new SortByZipcode());
 				Collections.sort(list, new SortByHouseNumber());
+				sortedList = list;
+				new DisplayGUI("Display to Console");
 			}
 		}
 		else if (action.equals("Reset")) {
@@ -241,7 +243,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			dispose();
 		}
 	}
-	
+
 	//Method reads every line in file to arraylist
 	/**
 	 * Method name: readCSV()

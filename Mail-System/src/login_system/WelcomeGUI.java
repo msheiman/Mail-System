@@ -200,7 +200,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 				ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
 				for (Mail i : list) {
 					if (track.equals(i.getTrackingNumber())) {
-						JOptionPane.showMessageDialog(trackingPanel, i.getStatus());
+						JOptionPane.showMessageDialog(trackingPanel, "Your mail is:" + i.getStatus());
 					}
 					else {
 						JOptionPane.showMessageDialog(trackingPanel, "Couldn't find mail based on\nentered tracking number", 
@@ -242,21 +242,21 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		//Method creates Product object by taking every item 
 		//in arraylist to assign to intance variables
-		private static Mail createMail(String[] data) {
-			double weight = Double.parseDouble(data[0]);
-			String trackingNumber = data[1];
-			String status = data[2];
-			String first = data [3];
-			String last = data[4];
-			int houseNum = Integer.parseInt(data[5]);
-			String street = data[6];
-			String city = data[7];
-			String state = data[8];
-			int zip = Integer.parseInt(data[9]);
-			Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
+	private static Mail createMail(String[] data) {
+		double weight = Double.parseDouble(data[0]);
+		String trackingNumber = data[1];
+		String status = data[2];
+		String first = data [3];
+		String last = data[4];
+		int houseNum = Integer.parseInt(data[5]);
+		String street = data[6];
+		String city = data[7];
+		String state = data[8];
+		int zip = Integer.parseInt(data[9]);
+		Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
 			
-			return new Mail (weight, trackingNumber, status, customer);
-		}
+		return new Mail (weight, trackingNumber, status, customer);
+	}
 		
 
 	
