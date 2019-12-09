@@ -5,19 +5,26 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import Customer_List.Customer;
+import Mail_Bag.Customer;
 import Mail_Bag.Mail;
-import Mail_Bag.MailCollection;
+import Mail_Bag.SortByHouseNumber;
+import Mail_Bag.SortByZipcode;
+
 
 public class EmployeeGUI extends JFrame implements ActionListener {
 	
@@ -52,14 +59,17 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JPanel infoPanel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
 	
-	private JButton addBtn = new JButton("Add New");
-	private JButton addAnotherBtn = new JButton("Add Another");
+	private JButton addBtn = new JButton("Add");
+	private JButton routeBtn = new JButton("Generate List");
 	private JButton resetBtn = new JButton("Reset");
 	private JButton cancelBtn = new JButton("Cancel");
 	
+	private ArrayList <Mail> list = new ArrayList <> ();
+	private Customer customer1;
+	
 	public EmployeeGUI(String title) {
 		super(title);
-		setSize(400,200); //set the size
+		setSize(600,400); //set the size
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default exit method
 		
 		buildInfoPanel();
@@ -119,17 +129,17 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	public void buildButtonPanel() {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(addBtn);
-		buttonPanel.add(addAnotherBtn);
 		buttonPanel.add(resetBtn);
+		buttonPanel.add(routeBtn);
 		buttonPanel.add(cancelBtn);
 	}
 	
 	private void setActionCommand() {
 		addBtn.addActionListener(this);
-		addBtn.setActionCommand("Add New");
+		addBtn.setActionCommand("Add");
 		
-		addAnotherBtn.addActionListener(this);
-		addAnotherBtn.setActionCommand("Add Another");
+		routeBtn.addActionListener(this);
+		routeBtn.setActionCommand("Generate List");
 		
 		resetBtn.addActionListener(this);
 		resetBtn.setActionCommand("Reset");
@@ -138,21 +148,36 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		cancelBtn.setActionCommand("Cancel");
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 		
-		if(action.equals("Add New")) {
-			Mail mail1 = new Mail(Double.valueOf(weightTxt.getText()), String.valueOf(statusBox.getSelectedItem()));
-			MailCollection mailBox = new MailCollection(20);
-			Customer customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
+		if(action.equals("Add")) {
+			customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
 					Integer.valueOf(houseNumberTxt.getText().trim()), streetTxt.getText().trim(), 
 					cityTxt.getText().trim(),stateTxt.getText().toUpperCase().trim(), 
-					Integer.valueOf(zipTxt.getText().trim()), mailBox);
-			mailBox.push(mail1);
+					Integer.valueOf(zipTxt.getText().trim()));
+			Mail mail1 = new Mail(Double.valueOf(weightTxt.getText()), String.valueOf(statusBox.getSelectedItem()), customer1);
+			list.add(mail1);
+			firstNameTxt.setText("");
+			lastNameTxt.setText("");
+			houseNumberTxt.setText("");
+			streetTxt.setText("");
+			cityTxt.setText("");
+			stateTxt.setText("");
+			zipTxt.setText("");
+			weightTxt.setText(""); 
 		}
-		else if (action.equals("Add Another")) {
-			weightTxt.setText("");
+		else if (action.equals("Generate List")) {
+			if (list.isEmpty()) {
+				JOptionPane.showMessageDialog(infoPanel, "List is Empty!","Warning", JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+			
+				Collections.sort(list, new SortByZipcode());
+				Collections.sort(list, new SortByHouseNumber());
+			}
 		}
 		else if (action.equals("Reset")) {
 			firstNameTxt.setText("");

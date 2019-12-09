@@ -1,5 +1,6 @@
 package Mail_Bag;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public class Mail {
@@ -7,7 +8,16 @@ public class Mail {
 	private String trackingNumber;
 	private boolean signature;
 	private String status;
+	private Customer customer;
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	/**
 	 * description: creates constructor 
 	 * parameters: none
@@ -15,11 +25,12 @@ public class Mail {
 	 * postcondition: creates constructor 
 	 * throws: none
 	 */
-	public Mail(double weight, String status) {
+	public Mail(double weight, String status, Customer customer) {
 		this.weight = weight;
 		this.trackingNumber = generateTrackingNumber();
 		this.signature = false;
 		this.status = status;
+		this.customer = customer;
 	}
 	
 	public String getStatus() {
@@ -114,7 +125,7 @@ public class Mail {
 		trackingNumber = char1 + char2 + String.valueOf(number);
 		return trackingNumber;
 	}
-	
+
 	/**
 	 * description: creates string of mail
 	 * parameters: none
@@ -129,4 +140,6 @@ public class Mail {
 		return info;
 	}
 	
-}
+}	
+
+

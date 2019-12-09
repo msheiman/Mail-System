@@ -181,7 +181,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 				trackingNumber.setText("");
 			}		
 			else {
-				
+				trackingNumber.getText().trim();
 			}
 		}
 		else if (action.equals("Log In")) {

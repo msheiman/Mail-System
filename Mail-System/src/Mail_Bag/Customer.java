@@ -1,8 +1,6 @@
-package Customer_List;
+package Mail_Bag;
 
 import java.util.Comparator;
-
-import Mail_Bag.MailCollection;
 
 public class Customer {
 	private String firstName;
@@ -12,7 +10,7 @@ public class Customer {
 	private String city;
 	private String state;
 	private int zipcode;
-	private MailCollection mailbox;
+
 
 	/**
 	 * description: creates constructor 
@@ -21,7 +19,7 @@ public class Customer {
 	 * postcondition: creates constructor 
 	 * throws: none
 	 */
-	public Customer(String firstName, String lastName, int houseNum, String street, String city, String state, int zipcode, MailCollection mailbox) {
+	public Customer(String firstName, String lastName, int houseNum, String street, String city, String state, int zipcode) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -29,7 +27,17 @@ public class Customer {
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
-		this.mailbox = mailbox;
+
+	}
+	
+	public Customer() {
+		this.firstName = null;
+		this.lastName = null;
+		this.houseNum = 0;
+		this.city = null;
+		this.state = null;
+		this.zipcode = 0;
+
 	}
 
 	public String getFirstName() {
@@ -156,28 +164,6 @@ public class Customer {
 	}
 
 	/**
-	 * description: creates mailbox
-	 * parameters: none
-	 * precondition: is called 
-	 * postcondition: creates mailbox 
-	 * throws: none
-	 */
-	public MailCollection getMailbox() {
-		return mailbox;
-	}
-
-	/**
-	 * description: sets mailbox 
-	 * parameters: MailCollection mailbox
-	 * precondition: is called 
-	 * postcondition: sets mailbox 
-	 * throws: none
-	 */
-	public void setMailbox(MailCollection mailbox) {
-		this.mailbox = mailbox;
-	}
-
-	/**
 	 * description: creates string 
 	 * parameters: none
 	 * precondition: is called 
@@ -189,32 +175,4 @@ public class Customer {
 		return firstName + " " + lastName + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
 	}
 }
-	/**
-	 * description: sorts customer by zipcode 
-	 * parameters: Customer o1, Customer o2
-	 * precondition: is called 
-	 * postcondition: returns compare 
-	 * throws: none
-	 */
-
-	class SortByZipcode implements Comparator <Customer>{
-		@Override
-		public int compare(Customer o1, Customer o2) {
-			return o1.getZipcode()- o2.getZipcode();
-		}	
-	}
-	
-	/**
-	 * description: sorts customer by house number 
-	 * parameters: Customer o1, Customer o2
-	 * precondition: is called 
-	 * postcondition: returns compare 
-	 * throws: none
-	 */
-	class SortByHouseNumber implements Comparator <Customer>{
-		@Override
-		public int compare(Customer o1, Customer o2) {
-			return o1.getHouseNum()- o2.getHouseNum();
-		}	
-	}
 
