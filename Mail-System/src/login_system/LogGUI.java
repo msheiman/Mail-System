@@ -83,6 +83,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		setVisible(true); //set frame to be visible
 	}
 	
+	/**
+	 * Method name: buildPanel
+	 * Heading: public void buildPanel()
+	 * Description: build panel allowing both employee and customer to operate
+	 * Parameters: none
+	 * Precondition: none
+	 * Postcondition: components added to panel
+	 * Throws list: none
+	 */
 	public void buildPanel() {
 		loginTitle.setFont(font);
 		loginTitle.setEditable(false);
@@ -128,6 +137,15 @@ public class LogGUI extends JFrame implements ActionListener{
 		mainLoginPanel.add(passwordInput);
 	}
 
+	/**
+	 * Method name: buildButtonPanel
+	 * Heading: public void buildButtonPanel()
+	 * Description: build button panel
+	 * Parameters: none
+	 * Precondition: none
+	 * Postcondition: components added to panel
+	 * Throws list: none
+	 */
 	public void buildButtonPanel() {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(createAccountBtn);
