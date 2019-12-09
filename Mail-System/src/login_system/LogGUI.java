@@ -208,7 +208,7 @@ public class LogGUI extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Method name: creat()
+	 * Method name: creatFile()
 	 * Heading: public void creatFile 
 	 * Description: fileIn is a writer
 	 * Parameters: none
