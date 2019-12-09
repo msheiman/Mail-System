@@ -50,6 +50,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	
 	private Font font = new Font("Calibri", Font.BOLD, 40);
 	
+	/**
+	 * Method name: CreateAccountGUI
+	 * Heading: public CreateAccountGUI (String title)
+	 * Description: build main GUI to create account 
+	 * Parameters: String title
+	 * Precondition: none
+	 * Postcondition: creates GUI
+	 * Throws list: none
+	 */
 	public CreateAccountGUI (String title) {
 		super(title);
 		setSize(450,350); //set the size
@@ -67,6 +76,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 		setVisible(true); //set frame to be visible
 	}
 
+	/**
+	 * Method name: buildPanel
+	 * Heading: public void buildPanel()
+	 * Description: builds the panel
+	 * Parameters: none
+	 * Precondition: none
+	 * Postcondition: components added to panel
+	 * Throws list: none
+	 */
 	public void buildPanel() {
 		loginTitle.setFont(font);
 		loginTitle.setEditable(false);
@@ -74,6 +92,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 		panel.add(loginTitle);
 	}
 	
+	/**
+	 * Method name: buildEmployeeCreationPanel
+	 * Heading: public void buildEmployeeCreationPanel()
+	 * Description: builds the panel to create employees
+	 * Parameters: none
+	 * Precondition: none
+	 * Postcondition: components added to panel
+	 * Throws list: none
+	 */
 	public void buildEmployeeCreationPanel() {
 		employeeCreationPanel.setLayout(new GridLayout(5,2));
 		
@@ -116,6 +143,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
 	}
 	
+	/**
+	 * Method name: setActionCommand()
+	 * Heading: private void setActionCommand()
+	 * Description: to set action command for buttons
+	 * Parameters: none
+	 * Precondition: is called
+	 * Postcondition: creates action commands
+	 * Throws list: none
+	 */
 	private void setActionCommand() {
 		submitBtn.addActionListener(this);
 		submitBtn.setActionCommand("Submit");
@@ -124,6 +160,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 		cancelBtn.setActionCommand("Cancel");
 	}
 
+	/**
+	 * Method name: actionPerformed()
+	 * Heading: public void actionPerformed(ActionEvent e)
+	 * Description: to perform action selected
+	 * Parameters: ActionEvent e
+	 * Precondition: if action is continue
+	 * Postcondition: calls newFrame
+	 * Throws list: none
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
