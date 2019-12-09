@@ -191,6 +191,16 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			else {
 				String track = trackingNumber.getText().trim();
 				ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
+				for (Mail i : list) {
+					if (track.equals(i.getTrackingNumber())) {
+						JOptionPane.showMessageDialog(trackingPanel, i.getStatus());
+					}
+					else {
+						JOptionPane.showMessageDialog(trackingPanel, "Couldn't find mail based on\nentered tracking number", 
+								"Error Message Box", JOptionPane.ERROR_MESSAGE );
+						trackingNumber.setText("");
+					}
+				}
 			}
 		}
 		else if (action.equals("Log In")) {
