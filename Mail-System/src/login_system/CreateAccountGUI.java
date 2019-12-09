@@ -116,6 +116,15 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 		employeeCreationPanel.add(passwordTxt);
 	}
 	
+	/**
+	 * Method name: buildButtonPanel
+	 * Heading: public void buildButtonPanel()
+	 * Description: builds the panel for buttons
+	 * Parameters: none
+	 * Precondition: none
+	 * Postcondition: components added to panel
+	 * Throws list: none
+	 */
 	public void buildButtonPanel() {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(submitBtn);
