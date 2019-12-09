@@ -174,7 +174,9 @@ public class Customer {
 	 */
 	@Override
 	public String toString() {
-		return firstName + " " + lastName + "\n" + houseNum + street + ", " + city + ", " + state + ", " + zipcode;
+		String info = String.format("%-20s%-6s%-20s%-20s%-6s%-8s",
+		firstName + " " + lastName, houseNum, street, city, state, zipcode);
+		return info;
 	}
 }
 
