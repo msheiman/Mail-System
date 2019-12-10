@@ -228,8 +228,15 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		}
 	}
 	
-	
-	//Method reads every line in file to arraylist
+	/**
+	 * Method name: readCSV()
+	 * Heading: private static ArrayList<Mail> readCSV(String fileName))
+	 * Description: read every line to arrayList
+	 * Parameters: String fileName
+	 * Precondition: Is reading line
+	 * Postcondition: returns mails
+	 * Throws list: N/A
+	 */
 	private static ArrayList<Mail> readCSV(String fileName){
 		ArrayList<Mail> mails = new ArrayList<>();
 		try {
@@ -248,8 +255,16 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		return mails;	
 	}
 		
-		//Method creates Product object by taking every item 
-		//in arraylist to assign to intance variables
+	/**
+	 * Method name: createMail
+	 * Heading: private static Mail createMail(String[] data)
+	 * Description: creates Product object by taking every item 
+	 *			assigns to intance variables
+	 * Parameters: String[] data
+	 * Precondition: is called
+	 * Postcondition: returns new Mail (weight, trackingNumber, status, customer)
+	 * Throws list: N/A
+	 */
 	private static Mail createMail(String[] data) {
 		double weight = Double.parseDouble(data[0]);
 		String trackingNumber = data[1];

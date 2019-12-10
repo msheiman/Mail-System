@@ -6,10 +6,24 @@ public class Mail {
 	private String status;
 	private Customer customer;
 	
+	/**
+	 * description: gets customer
+	 * parameters: none
+	 * precondition: is called
+	 * postcondition: return customer
+	 * throws: none
+	 */	
 	public Customer getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * description: sets setCustomer 
+	 * parameters: Customer customer
+	 * precondition: is called
+	 * postcondition: sets customer
+	 * throws: none
+	 */	
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
@@ -28,6 +42,13 @@ public class Mail {
 		this.customer = customer;
 	}
 	
+	/**
+	 * description: creates constructor 
+	 * parameters: double weight, String trackingNumber, String status, Customer customer
+	 * precondition: is called 
+	 * postcondition: creates constructor 
+	 * throws: none
+	 */
 	public Mail(double weight, String trackingNumber, String status, Customer customer) {
 		this.weight = weight;
 		this.trackingNumber = trackingNumber;
@@ -35,9 +56,24 @@ public class Mail {
 		this.customer = customer;
 	}
 
+	/**
+	 * description: gets status 
+	 * parameters: none
+	 * precondition: is called
+	 * postcondition: sets status
+	 * throws: none
+	 */	
 	public String getStatus() {
 		return status;
 	}
+	
+	/**
+	 * description: sets setStatus 
+	 * parameters: String status
+	 * precondition: is called
+	 * postcondition: sets setStatus
+	 * throws: none
+	 */	
 	public void setStatus(String status) {
 		this.status = status;
 	}
