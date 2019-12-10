@@ -25,7 +25,6 @@ public class Customer {
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
-
 	}
 	
 	public Customer() {
