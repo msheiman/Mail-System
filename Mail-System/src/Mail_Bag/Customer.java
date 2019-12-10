@@ -27,6 +27,13 @@ public class Customer {
 		this.zipcode = zipcode;
 	}
 	
+	/**
+	 * description: creates constructor 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: creates constructor 
+	 * throws: none
+	 */
 	public Customer() {
 		this.firstName = null;
 		this.lastName = null;
@@ -38,15 +45,46 @@ public class Customer {
 
 	}
 
+	/**
+	 * description: returns firstName 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: returns firstName 
+	 * throws: none
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
+	
+	/**
+	 * description: sets firstName 
+	 * parameters: String firstName
+	 * precondition: is called
+	 * postcondition: sets firstName
+	 * throws: none
+	 */		
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+	/**
+	 * description: returns lastName 
+	 * parameters: none
+	 * precondition: is called 
+	 * postcondition: returns lastName 
+	 * throws: none
+	 */	
 	public String getLastName() {
 		return lastName;
 	}
+	
+	/**
+	 * description: sets lastName 
+	 * parameters: String lastName
+	 * precondition: is called
+	 * postcondition: sets lastName
+	 * throws: none
+	 */	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
