@@ -258,8 +258,6 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			}
 			else {
 				Collections.sort(list, new SortByZipcode());
-				Collections.sort(list, new SortByHouseNumber());
-				sortedList = list;
 				new DisplayGUI("Display to Console");
 			}
 		}
