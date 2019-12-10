@@ -258,6 +258,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			}
 			else {
 				Collections.sort(list, new SortByZipcode());
+				sortedList = list;
 				new DisplayGUI("Display to Console");
 			}
 		}
