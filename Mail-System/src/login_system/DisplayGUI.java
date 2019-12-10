@@ -39,7 +39,15 @@ public class DisplayGUI extends JFrame implements ActionListener {
 	
 	//TITLED BORDER
 	private TitledBorder border = new TitledBorder(null, "MAIL LIST", TitledBorder.CENTER , TitledBorder.ABOVE_TOP, font, Color.red);
-	
+		/**
+	 * Method name: DisplayGUI()
+	 * Heading: public DisplayGUI(String title)
+	 * Description: to create the frame of the GUI
+	 * Parameters: String title
+	 * Precondition: the frame is called
+	 * Postcondition: creates the frame
+	 * Throws list: N/A
+	 */
 	public DisplayGUI(String title) {
 		super(title);
 		setSize(1000,400); //set the size
