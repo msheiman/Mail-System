@@ -104,10 +104,10 @@ public class EmployeeList{
 	}
 
 	/**
-	 * Method name: checkUserName()
-	 * Heading: public boolean checkUsername(String username) 
+	 * Method name: check()
+	 * Heading: public boolean check(String username) 
 	 * Description: to add Employee to a Linked List
-	 * Parameters: String userName
+	 * Parameters: String userName, String password
 	 * Precondition: if getUser() equals username
 	 * Postcondition: returns true or false
 	 * Throws list: IllegalArgumentException("Illegal Username")
