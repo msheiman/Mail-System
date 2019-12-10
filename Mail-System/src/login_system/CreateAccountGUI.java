@@ -27,27 +27,33 @@ import Employee_System.Employee;
 @SuppressWarnings("serial")
 public class CreateAccountGUI extends JFrame implements ActionListener{
 	
+	//PANELS
 	private JPanel panel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
 	private JPanel employeeCreationPanel = new JPanel();
 	
+	//TEXTFIELDS
 	private JTextField firstNameTxt = new JTextField();
 	private JTextField lastNameTxt = new JTextField();
 	private JTextField emailTxt = new JTextField();
 	private JTextField usernameTxt = new JTextField();
 	private JTextField passwordTxt = new JTextField();
 	
+	//LABELS
 	private JLabel firstNameLbl = new JLabel("First Name", SwingConstants.CENTER);
 	private JLabel lastNameLbl = new JLabel("Last Name", SwingConstants.CENTER);
 	private JLabel usernameLbl = new JLabel("Username", SwingConstants.CENTER);
 	private JLabel passwordLbl = new JLabel("Password", SwingConstants.CENTER);
 	private JLabel emailLbl = new JLabel("Email", SwingConstants.CENTER);
 	
+	//BUTTONS
 	private JButton submitBtn = new JButton ("Submit");
 	private JButton cancelBtn = new JButton("Cancel");
 	
+	//TEXTPANE
 	private JTextPane loginTitle = new JTextPane();
 	
+	//FONT
 	private Font font = new Font("Calibri", Font.BOLD, 40);
 	
 	/**
@@ -237,5 +243,4 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -83,7 +83,6 @@ public class EmployeeList{
 			// if data of the node that cursor currently points equals to the target
 			// check of precursor is null
 			if (cursor.getData().equals(target)) {
-				
 				// if it's null, it means target is found at the head of list
 				// head will become the next node
 				// found target will be removed
@@ -94,7 +93,6 @@ public class EmployeeList{
 				else {
 					precursor.setLink(cursor.getLink());
 				}
-				
 				// decrease the number of links in list
 				listLength--;
 				return true;
@@ -132,7 +130,6 @@ public class EmployeeList{
 					// and break the loop
 					flag = true;
 					break;
-					
 				}
 				// move to next link if current node is not target node
 				cursor = cursor.getLink();
@@ -151,7 +148,6 @@ public class EmployeeList{
 	 * Throws list: N/A
 	 */
 	public int countSize() { 
-		
 		// create a node named temp pointing at head of list
 		EmployeeNode temp = head; 
 		// create a counter and initialize 0 to it
@@ -165,5 +161,4 @@ public class EmployeeList{
 	    } 
 	    return listLength; 
 	}
-
 }
