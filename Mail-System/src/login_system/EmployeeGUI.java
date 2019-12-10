@@ -326,7 +326,6 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		String state = data[8];
 		int zip = Integer.parseInt(data[9]);
 		Customer customer = new Customer (first, last, houseNum, street, city, state, zip);
-			
 		return new Mail (weight, trackingNumber, status, customer);
 	}
 		
