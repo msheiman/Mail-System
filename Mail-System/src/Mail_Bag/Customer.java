@@ -9,7 +9,6 @@ public class Customer {
 	private String state;
 	private int zipcode;
 
-
 	/**
 	 * description: creates constructor 
 	 * parameters:String name, int houseNum, String street, String city, String state, int zipcode, MailCollection mailbox
