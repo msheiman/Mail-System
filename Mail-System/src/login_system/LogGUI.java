@@ -185,23 +185,30 @@ public class LogGUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 
+		//if user clicks create account, show create account GUI
 		if (action.equals("Create Account")) {
 			new CreateAccountGUI("New Employee");
 		}
+		
+		//if user clicks Log in, check username and password
 		else if (action.equals("Log In")) {	
 			String passwordEntered = new String (passwordInput.getPassword());
 			Token login = new Token(usernameInput.getText(), passwordEntered);
 			EmployeeList employeeList = readCSV("Mail-System/src/Employee_System/EmployeeSystem.csv");
 			Authenticator check = new Authenticator(login, employeeList);
+			
+			//if username and password are correct, log user in and go to EmployeeGUI, dispose current frame
 			if (check.authenticate()) {
 				new EmployeeGUI("Employee Function");
 				dispose();
 			} 
+			//otherwise, display error message box
 			else {
 				JOptionPane.showMessageDialog(mainLoginPanel, "Invalid Username or Password!",
 						"Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		}
+		//if user clicks cancel, dispose current frame
 		else if (action.equals("Cancel")) {
 			dispose();
 		}

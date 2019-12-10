@@ -102,8 +102,10 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	 * Throws list: none
 	 */
 	public void buildEmployeeCreationPanel() {
+		//set layout of panel is grid layout with 5 rows and 2 columns
 		employeeCreationPanel.setLayout(new GridLayout(5,2));
 		
+		//add components to panel
 		employeeCreationPanel.add(firstNameLbl);
 		employeeCreationPanel.add(firstNameTxt);
 		employeeCreationPanel.add(lastNameLbl);
@@ -126,7 +128,10 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	 * Throws list: none
 	 */
 	public void buildButtonPanel() {
+		//set layout of panel to flow layout
 		buttonPanel.setLayout(new FlowLayout());
+		
+		//add buttons to panel
 		buttonPanel.add(submitBtn);
 		buttonPanel.add(cancelBtn);
 	}
@@ -182,13 +187,16 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 	
+		//if user clicks submit, create new employee instance and write to file
+		//Display the message saying that account has been successfully created
 		if (action.equals("Submit")) {
 			Employee employee = new Employee(firstNameTxt.getText(), lastNameTxt.getText(),
 					emailTxt.getText(), usernameTxt.getText(),passwordTxt.getText());
 			writeToFile(employee); // Add the employee information to CVS File
 			JOptionPane.showMessageDialog(employeeCreationPanel, "Successfully Created Account");
-			dispose();
+			dispose(); //dispose the current frame
 		}
+		//if user clicks cancel, dispose current frame
 		else if(action.equals("Cancel")) {
 			dispose();
 		}
@@ -202,7 +210,7 @@ public class CreateAccountGUI extends JFrame implements ActionListener{
 	 * Precondition: the tail is not null
 	 * Postcondition: appends items to file
 	 * Throws list: IOException e
-	 		Exception e
+	 				Exception e
 	 */
 	public void writeToFile(Employee employee) {
 		FileWriter fileIn = null; //declare a file

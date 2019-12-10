@@ -177,7 +177,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 		
-		// If user chooses "Track
+		// If user chooses "Track", checj if entered tracking number is 10 digits
+		// and first 2 characters are "MS"
+		// display error message if it not correctly entered
 		if (action.equals("Track")) {
 			char char1 = String.valueOf(trackingNumber.getText().trim()).charAt(0);
 			char char2 = String.valueOf(trackingNumber.getText().trim()).charAt(0);
@@ -195,6 +197,10 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 						"Error Message Box", JOptionPane.ERROR_MESSAGE );
 				trackingNumber.setText("");
 			}
+			
+			// if it correct, read the mail and go through all tracking number
+			// if it is found, display status of that mail
+			// otherwise, display error message
 			else {
 				String track = trackingNumber.getText().trim();
 				ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
@@ -210,6 +216,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 				}
 			}
 		}
+		//if user choose log in, open logGUI and dispose current frame
 		else if (action.equals("Log In")) {
 			@SuppressWarnings("unused")
 			LogGUI newFrame = new LogGUI("Employee Login Page");

@@ -33,7 +33,10 @@ import Mail_Bag.SortByZipcode;
 
 public class EmployeeGUI extends JFrame implements ActionListener {
 	
+	//TITLED BORDER
 	private TitledBorder addBorder = new TitledBorder("Add New Mail");
+	
+	//LABELS
 	private JLabel customerInfoLbl = new JLabel("Customer Information", SwingConstants.LEFT);
 	private JLabel firstNameLbl = new JLabel("First Name", SwingConstants.CENTER);
 	private JLabel lastNameLbl = new JLabel("Last Name", SwingConstants.CENTER);
@@ -47,6 +50,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JLabel poundsLbl = new JLabel("pounds", SwingConstants.LEFT);
 	private JLabel statusLbl = new JLabel("Status", SwingConstants.CENTER);
 	
+	//TEXT FIELDS
 	private JTextField firstNameTxt = new JTextField();
 	private JTextField lastNameTxt = new JTextField();
 	private JTextField houseNumberTxt = new JTextField();
@@ -56,17 +60,21 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private JTextField zipTxt = new JTextField();
 	private JTextField weightTxt = new JTextField();
 	
+	//COMBO BOX
 	String[] statusList = {"Posted", "Processing", "In Transit", "Out for Delivery", "Delivered"};
 	private JComboBox <String> statusBox = new JComboBox<>(statusList);
 	
+	//PANELS
 	private JPanel infoPanel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
 	
+	//BUTTONS
 	private JButton addBtn = new JButton("Add");
 	private JButton routeBtn = new JButton("Generate List");
 	private JButton resetBtn = new JButton("Reset");
 	private JButton cancelBtn = new JButton("Cancel");
 	
+	//ARRAYLIST
 	static ArrayList<Mail> sortedList = new ArrayList<>();
 	
 	/**
@@ -83,9 +91,11 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		setSize(600,400); //set the size
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default exit method
 		
+		//build panel
 		buildInfoPanel();
 		buildButtonPanel();
 		
+		//add panel to frame at specific positions
 		add(infoPanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
@@ -103,8 +113,13 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	 * Throws list: N/A
 	 */
 	public void buildInfoPanel() {
+		//set layout of panel to grid layout to grid layout with 8 rows and 4 columns
 		infoPanel.setLayout(new GridLayout(8,4));
+		
+		//set titled border to panel
 		infoPanel.setBorder(addBorder);
+		
+		//Add components to panel
 		infoPanel.add(customerInfoLbl);
 		infoPanel.add(new JLabel());
 		infoPanel.add(new JLabel());
@@ -156,7 +171,10 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	 * Throws list: N/A
 	 */
 	public void buildButtonPanel() {
+		//set layout of panel to flow layout
 		buttonPanel.setLayout(new FlowLayout());
+		
+		//add components to panel
 		buttonPanel.add(addBtn);
 		buttonPanel.add(resetBtn);
 		buttonPanel.add(routeBtn);
@@ -200,6 +218,8 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 		
+		//if user clicks add, create Customer instance, Mail object
+		//write mail to a CSV file name MailList
 		if(action.equals("Add")) {
 			Customer customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
 					Integer.valueOf(houseNumberTxt.getText().trim()), streetTxt.getText().trim(), 
@@ -208,6 +228,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			Mail mail1 = new Mail(Double.valueOf(weightTxt.getText()), String.valueOf(statusBox.getSelectedItem()), customer1);
 			writeCSV(mail1);
 			
+			//Set all the text to blank
 			firstNameTxt.setText("");
 			lastNameTxt.setText("");
 			houseNumberTxt.setText("");
@@ -217,6 +238,11 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			zipTxt.setText("");
 			weightTxt.setText(""); 
 		}
+		
+		// if user clicks Generate list, read the MailList.csv
+		// if list is empty, show message box
+		// otherwise, sort list by zipcode then by house number
+		//create new GUI to display the list
 		else if (action.equals("Generate List")) {
 			ArrayList<Mail> list = readCSV("Mail-System/src/Mail_Bag/MailList.csv");
 			if (list.isEmpty()) {
@@ -229,6 +255,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 				new DisplayGUI("Display to Console");
 			}
 		}
+		//if user clicks reset, set all the texts to blank
 		else if (action.equals("Reset")) {
 			firstNameTxt.setText("");
 			lastNameTxt.setText("");
@@ -239,12 +266,12 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 			zipTxt.setText("");
 			weightTxt.setText(""); 
 		}
+		//exit program if user clicks cancel
 		else if (action.equals("Cancel")) {
-			dispose();
+			System.exit(0);
 		}
 	}
-
-	//Method reads every line in file to arraylist
+	
 	/**
 	 * Method name: readCSV()
 	 * Heading: public static ArrayList<Mail> readCSV(String fileName)
@@ -277,7 +304,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	 * Description: to creates Product object by taking every item
 	 * Parameters: String[] data
 	 * Precondition: is called
-	 * Postcondition: returns new Mail(weight, trackingNumber, status, customer)
+	 * Postcondition: return created Mail object
 	 * Throws list: N/A
 	 */
 	private static Mail createMail(String[] data) {
@@ -310,8 +337,8 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		BufferedWriter fileIn = null; //declare a file
 		try {
 			fileIn = new BufferedWriter( new FileWriter("Mail-System/src/Mail_Bag/MailList.csv", true)); //create new file
-				//Write each item in arrayList into file
-				
+			
+			//Write each item in arrayList into file	
 			fileIn.append(String.valueOf(m.getWeight()));
 			fileIn.append(",");
 			fileIn.append(m.getTrackingNumber());

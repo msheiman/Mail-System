@@ -31,7 +31,11 @@ public class Authenticator {
 	 */
 	public boolean authenticate() {
 		
+		//check both username and password
 		boolean check = list.check(t.getUser(), t.getPword());
+		
+		//if check is true, return true
+		//otherwise, return false
 		if (check == true) {
 			return true;
 		}
