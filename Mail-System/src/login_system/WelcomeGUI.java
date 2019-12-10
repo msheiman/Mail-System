@@ -233,6 +233,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	private static ArrayList<Mail> readCSV(String fileName){
 		ArrayList<Mail> mails = new ArrayList<>();
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			String line = br.readLine(); //read every line
 			while(line != null) {

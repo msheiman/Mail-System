@@ -1,7 +1,5 @@
 package Mail_Bag;
 
-import java.util.Comparator;
-
 public class Customer {
 	private String firstName;
 	private String lastName;

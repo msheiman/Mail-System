@@ -12,9 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,6 +28,7 @@ import Mail_Bag.SortByHouseNumber;
 import Mail_Bag.SortByZipcode;
 
 
+@SuppressWarnings("serial")
 public class EmployeeGUI extends JFrame implements ActionListener {
 	
 	//TITLED BORDER
@@ -213,7 +211,6 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	 * Postcondition: calls newFrame
 	 * Throws list: none
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
@@ -221,6 +218,17 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 		//if user clicks add, create Customer instance, Mail object
 		//write mail to a CSV file name MailList
 		if(action.equals("Add")) {
+			if (firstNameTxt.getText().trim() == "" || lastNameTxt.getText().trim() == "" || 
+					houseNumberTxt.getText().trim() == ""|| streetTxt.getText().trim() == ""|| 
+					cityTxt.getText().trim() == "" || stateTxt.getText().toUpperCase().trim() == ""|| 
+					zipTxt.getText().trim() == ""){
+				JOptionPane.showMessageDialog(infoPanel, "Information is missing!","Warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			else if (zipTxt.getText().trim().length()!= 5) {
+				JOptionPane.showMessageDialog(infoPanel, "Zipcode is invalid!","Warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
 			Customer customer1 = new Customer(firstNameTxt.getText().trim(), lastNameTxt.getText().trim(), 
 					Integer.valueOf(houseNumberTxt.getText().trim()), streetTxt.getText().trim(), 
 					cityTxt.getText().trim(),stateTxt.getText().toUpperCase().trim(), 
@@ -284,6 +292,7 @@ public class EmployeeGUI extends JFrame implements ActionListener {
 	private static ArrayList<Mail> readCSV(String fileName){
 		ArrayList<Mail> mails = new ArrayList<>();
 		try {
+			@SuppressWarnings("resource")
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			String line = br.readLine(); //read every line
 			while(line != null) {

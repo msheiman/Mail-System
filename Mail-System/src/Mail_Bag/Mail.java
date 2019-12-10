@@ -1,7 +1,5 @@
 package Mail_Bag;
 
-import java.util.Random;
-
 public class Mail {
 	private double weight;
 	private String trackingNumber;
